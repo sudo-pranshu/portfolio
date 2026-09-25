@@ -1,0 +1,318 @@
+/* ---------- Route bar ---------- */
+.route-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent);
+  transform-origin: left;
+  z-index: 60;
+  pointer-events: none;
+}
+
+.page-fallback {
+  min-height: 100vh;
+}
+
+/* ---------- Nav ---------- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--background);
+  border-bottom: 1px solid var(--border);
+  transition: background-color var(--dur) var(--ease-out);
+}
+
+.nav__bar {
+  height: var(--nav-h);
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--col-gap);
+  align-items: center;
+}
+
+.nav__mark {
+  grid-column: 1 / span 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--f-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  justify-self: start;
+}
+.nav__sq {
+  width: 10px;
+  height: 10px;
+  background: var(--accent);
+  flex: none;
+}
+
+.nav__links {
+  grid-column: 4 / span 6;
+  display: flex;
+  gap: clamp(1rem, 2vw, 2.25rem);
+  justify-self: start;
+}
+
+.nav__link {
+  position: relative;
+  font-family: var(--f-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-block: 0.6rem;
+  display: inline-flex;
+  gap: 0.45rem;
+  transition: color var(--dur-fast);
+}
+.nav__idx {
+  color: var(--faint);
+  transition: color var(--dur-fast);
+}
+.nav__link:hover {
+  color: var(--foreground);
+}
+.nav__link.active {
+  color: var(--foreground);
+}
+.nav__link.active .nav__idx {
+  color: var(--accent);
+}
+.nav__link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc((var(--nav-h) - 2.2rem) / -2 - 1px);
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur) var(--ease-out);
+}
+.nav__link.active::after {
+  transform: scaleX(1);
+}
+
+.nav__util {
+  grid-column: 10 / -1;
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-family: var(--f-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.nav__theme,
+.nav__cv {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--muted);
+  padding-block: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  transition: color var(--dur-fast);
+}
+.nav__theme:hover,
+.nav__cv:hover {
+  color: var(--foreground);
+}
+.nav__cv {
+  color: var(--foreground);
+}
+.nav__themeicon {
+  width: 10px;
+  height: 10px;
+  border: 1px solid currentColor;
+  background: linear-gradient(90deg, currentColor 50%, transparent 50%);
+}
+.nav__menu {
+  display: none;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  min-height: 44px;
+  min-width: 64px;
+  text-align: right;
+}
+
+@media (max-width: 1020px) {
+  .nav__links,
+  .nav__theme {
+    display: none;
+  }
+  .nav__mark {
+    grid-column: 1 / span 7;
+  }
+  .nav__util {
+    grid-column: 8 / -1;
+  }
+  .nav__menu {
+    display: inline-block;
+  }
+}
+@media (max-width: 420px) {
+  .nav__cv {
+    display: none;
+  }
+}
+
+/* ---------- Mobile menu ---------- */
+.menu {
+  position: fixed;
+  inset: var(--nav-h) 0 0 0;
+  background: var(--background);
+  z-index: 49;
+  overflow-y: auto;
+  border-top: 1px solid var(--border);
+}
+.menu__inner {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-block: var(--s-6) var(--s-7);
+  gap: var(--s-7);
+}
+.menu__list li {
+  border-bottom: 1px solid var(--border);
+}
+.menu__link {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-4);
+  padding-block: 0.9rem;
+  font-stretch: 70%;
+  font-weight: 720;
+  text-transform: uppercase;
+  font-size: clamp(2.2rem, 11vw, 3.6rem);
+  line-height: 1;
+}
+.menu__link.active {
+  color: var(--accent);
+}
+.menu__link .label {
+  min-width: 2.2em;
+}
+.menu__foot {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  align-items: flex-start;
+}
+.menu__foot-row {
+  display: flex;
+  gap: var(--s-5);
+  flex-wrap: wrap;
+}
+
+/* ---------- Footer: title block ---------- */
+.foot {
+  position: relative;
+  z-index: 1;
+  padding-block: var(--s-8) var(--s-6);
+}
+.foot__block {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  border: 1px solid var(--border);
+}
+.foot__cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: var(--s-4);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  font-size: var(--t-small);
+  min-width: 0;
+}
+.foot__cell:nth-child(4) {
+  border-right: 0;
+}
+.foot__cell--name {
+  grid-row: span 3;
+}
+.foot__name {
+  font-stretch: 70%;
+  font-weight: 720;
+  text-transform: uppercase;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  line-height: 0.95;
+  margin-top: auto;
+}
+.foot__cell--wide {
+  grid-column: 2 / -1;
+  border-right: 0;
+}
+.foot__cell--nav {
+  grid-column: 1 / -1;
+  border: 0;
+  flex-direction: row;
+  align-items: baseline;
+  gap: var(--s-5);
+  flex-wrap: wrap;
+}
+.foot__socials,
+.foot__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+}
+.foot__nav a {
+  color: var(--muted);
+  font-family: var(--f-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding-block: 0.25rem;
+}
+.foot__nav a:hover {
+  color: var(--accent);
+}
+.foot__cell a {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 760px) {
+  .foot__block {
+    grid-template-columns: 1fr 1fr;
+  }
+  .foot__cell--name {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    border-right: 0;
+  }
+  .foot__cell:nth-child(2) {
+    border-right: 1px solid var(--border);
+  }
+  .foot__cell:nth-child(3) {
+    border-right: 0;
+  }
+  .foot__cell:nth-child(4) {
+    grid-column: 1 / -1;
+  }
+  .foot__cell--wide {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Touch targets */
+.nav__mark {
+  min-height: 44px;
+}
+.foot__cell a.inline-link,
+.foot__socials a {
+  display: inline-block;
+  padding-block: 0.3rem;
+  line-height: 1.3;
+}

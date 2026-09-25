@@ -1,0 +1,76 @@
+/* Design tokens. Documented in /design.md. */
+:root,
+:root[data-theme='dark'] {
+  --background: #0e0e0d;
+  --surface: #151513;
+  --surface-hover: #1c1c1a;
+  --foreground: #ece9e2;
+  --muted: #8f8c85;
+  --faint: #5b5954;
+  --border: #2a2926;
+  --rule: rgba(236, 233, 226, 0.045);
+  --accent: #ff4a2b;
+  --accent-contrast: #0e0e0d;
+  --accent-soft: rgba(255, 74, 43, 0.12);
+  --trace: #ece9e2;
+  --noise-opacity: 0.06;
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  --background: #efede7;
+  --surface: #e6e3db;
+  --surface-hover: #dedad1;
+  --foreground: #121211;
+  --muted: #5c5a55;
+  --faint: #8d8a83;
+  --border: #cfcbc1;
+  --rule: rgba(18, 18, 17, 0.06);
+  --accent: #c8270e;
+  --accent-contrast: #efede7;
+  --accent-soft: rgba(200, 39, 14, 0.1);
+  --trace: #121211;
+  --noise-opacity: 0.08;
+  color-scheme: light;
+}
+
+:root {
+  /* Type families */
+  --f-sans: 'Archivo Variable', 'Archivo', ui-sans-serif, sans-serif;
+  --f-serif: 'Instrument Serif', 'Times New Roman', serif;
+  --f-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  /* Type scale */
+  --t-label: 0.7rem;
+  --t-small: 0.875rem;
+  --t-body: 1.0625rem;
+  --t-lede: clamp(1.45rem, 1.1rem + 1.2vw, 2.1rem);
+  --t-h3: clamp(1.5rem, 1.2rem + 1vw, 2.1rem);
+  --t-h2: clamp(2.6rem, 1.6rem + 4vw, 5.5rem);
+  --t-display: clamp(4.6rem, 1rem + 14.5vw, 14rem);
+
+  /* Spacing (4px base) */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4rem;
+  --s-9: 6rem;
+  --s-10: 8rem;
+  --section: clamp(4.5rem, 2.5rem + 4.5vw, 7.5rem);
+
+  /* Layout */
+  --max: 1440px;
+  --gutter: clamp(1rem, 0.4rem + 3vw, 3.5rem);
+  --col-gap: clamp(1rem, 0.5rem + 1.4vw, 2rem);
+  --nav-h: 64px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 160ms;
+  --dur: 280ms;
+}
