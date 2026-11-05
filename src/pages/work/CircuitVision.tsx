@@ -40,13 +40,16 @@ export default function CircuitVision() {
         </p>
       </section>
 
-      <section className="wrap cv-hero" aria-label="Before and after">
-        <BeforeAfter />
-      </section>
-
       <section className="wrap cv-gallery" aria-label="Detector output on hand-drawn circuits">
         <h2 className="label cv-gallery__h">What the detector sees</h2>
         <div className="cv-gallery__grid">
+          <Photo
+            className="cv-gallery__wide"
+            src="assets/work/cv-detect-3"
+            width={1280}
+            height={960}
+            alt="A crumpled hand-drawn microcontroller schematic with boxes over resistors, capacitors, diodes, grounds, crossovers, junctions and text"
+          />
           <Photo
             src="assets/work/cv-detect-1"
             width={1269}
@@ -59,13 +62,6 @@ export default function CircuitVision() {
             height={952}
             alt="A hand-drawn 555 timer circuit on a notebook page, with boxes over the resistors, capacitors, grounds, junctions and values"
           />
-          <Photo
-            className="cv-gallery__wide"
-            src="assets/work/cv-detect-3"
-            width={1280}
-            height={960}
-            alt="A crumpled hand-drawn microcontroller schematic with boxes over resistors, capacitors, diodes, grounds, crossovers, junctions and text"
-          />
         </div>
         <p className="cv-gallery__cap muted">
           Detector output on three hand-drawn circuits, from a clean grid-paper sketch to a crumpled page. Resistors are
@@ -73,7 +69,11 @@ export default function CircuitVision() {
         </p>
       </section>
 
-      <CaseSection n="01" title="Why" kicker="Drawing is fast; netlists are not." id="why">
+            <section className="wrap cv-hero" aria-label="Before and after">
+        <BeforeAfter />
+      </section>
+
+<CaseSection n="01" title="Why" kicker="Drawing is fast; netlists are not." id="why">
         <p className="prose">
           Students and engineers sketch circuits by hand, then retype them as netlists to simulate them. That step is
           slow and error-prone. CircuitVision reads the sketch directly: which components are there, which way round

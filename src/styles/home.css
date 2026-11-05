@@ -896,3 +896,16 @@
     margin-top: var(--s-6);
   }
 }
+
+.cvf__media .photo {
+  margin: 0;
+}
+.cvf__media .photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--border);
+}
+.cvf__media .photo figcaption {
+  margin-top: 0.6rem;
+}

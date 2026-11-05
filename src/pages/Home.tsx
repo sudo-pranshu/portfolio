@@ -9,7 +9,6 @@ import { Interests } from '../components/Interests'
 import { SignalFigure } from '../components/diagrams/SignalFigure'
 import { DemoVideo } from '../components/DemoVideo'
 import { Photo } from '../components/Photo'
-import { BeforeAfter } from '../components/cv/BeforeAfter'
 import { SignalChain } from '../components/diagrams/SignalChain'
 import { SemesterPanel } from '../components/diagrams/SemesterPanel'
 import { personal } from '../config/personal'
@@ -215,7 +214,13 @@ export default function Home() {
           {/* CircuitVision: second flagship, image-led */}
           <Reveal className="cvf">
             <div className="cvf__media">
-              <BeforeAfter />
+              <Photo
+                src="assets/work/cv-detect-1"
+                width={1269}
+                height={952}
+                alt="A hand-drawn audio circuit on grid paper with the detector's boxes over every resistor, capacitor, ground, junction and text label"
+                caption="Detector output on a hand-drawn circuit"
+              />
             </div>
             <Link to="/work/circuitvision" className="cvf__text">
               <span className="label label--accent">{cv.index} · Flagship · Computer vision</span>
