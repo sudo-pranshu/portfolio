@@ -176,7 +176,7 @@ export const projects: Project[] = [
     context: 'Team project, SRA VJTI',
     role: 'Team member; design, implementation, PID tuning',
     period: null,
-    technologies: ['ESP32', 'ESP-IDF', 'SRA Board', 'Light Sensor Array', 'PID', 'Git'],
+    technologies: ['ESP32', 'ESP-IDF', 'FreeRTOS', 'MPU-6050', 'SRA Board', 'Light Sensor Array', 'PID', 'Git'],
     keyFigures: [
       { value: '2', label: 'Independent PID loops' },
     ],
@@ -185,7 +185,7 @@ export const projects: Project[] = [
       'Line-following PID adjusts differential motor speed',
       'Balancing PID from positional feedback',
     ],
-    github: null,
+    github: 'https://github.com/SRA-VJTI/Wall-E',
     demo: null,
     images: [],
     accent: 'var(--accent)',

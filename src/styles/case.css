@@ -1050,3 +1050,18 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Wall-E: board photo */
+.we-photo {
+  padding-block: clamp(1.5rem, 4vw, 3rem);
+}
+.we-photo .photo {
+  margin: 0;
+  max-width: 760px;
+}
+.we-photo .photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--border);
+}

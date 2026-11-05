@@ -1,6 +1,7 @@
 import { Page } from '../../components/Page'
 import { CaseHeader, CaseLinks, CaseSection, NextProject } from '../../components/Case'
 import { Reveal } from '../../components/Reveal'
+import { Photo } from '../../components/Photo'
 import { LineFollower } from '../../components/diagrams/LineFollower'
 import { getProject } from '../../data/projects'
 
@@ -18,6 +19,16 @@ export default function WallE() {
 
       <section className="wrap cabstract">
         <p className="cabstract__lede serif">{p.summary}</p>
+      </section>
+
+      <section className="wrap we-photo" aria-label="The Wall-E board">
+        <Photo
+          src="assets/work/walle-board"
+          width={1400}
+          height={1343}
+          alt="Top view of the Wall-E v2.7 robot: the SRA board carrying an ESP-32 module, an MPU-6050 breakout, a motor-driver board, an OLED display and an LED matrix, on a two-wheeled chassis"
+          caption="Wall-E v2.7 (2026): the SRA board with the ESP32, MPU-6050, motor driver, OLED and LED matrix"
+        />
       </section>
 
       <CaseSection n="01" title="Two loops, one pair of motors" wide id="loops">
@@ -51,8 +62,11 @@ export default function WallE() {
             <span className="label label--accent">Hardware</span>
             <h3 className="notes__t">ESP32 on the SRA board</h3>
             <p>
-              The SRA Board is a custom PCB designed in-house by the Society of Robotics and Automation at VJTI.
-              Firmware is written with ESP-IDF and versioned in Git.
+              The SRA Board is a custom PCB designed in-house by the Society of Robotics and Automation at VJTI. It
+              carries the ESP32 (WROOM-32E), an MPU-6050 IMU port, motor-driver and servo headers, an OLED connector and
+              an LED matrix driven by 74HC595 shift registers. Firmware uses ESP-IDF with FreeRTOS tasks and is
+              versioned in Git; the public workshop repository also includes a WebSocket interface for tuning without
+              reflashing.
             </p>
           </div>
           <div className="notes__col">
