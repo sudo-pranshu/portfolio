@@ -10,6 +10,7 @@ import './styles/pages.css'
 import './styles/case.css'
 import './styles/diagrams.css'
 import App from './App'
+import { ErrorBoundary } from './components/ErrorBoundary'
 
 /** VITE_HASH_ROUTER=1 builds a hash-routed copy for hosts without SPA rewrites. */
 const Router = import.meta.env.VITE_HASH_ROUTER === '1' ? HashRouter : BrowserRouter
@@ -18,8 +19,10 @@ if ('scrollRestoration' in history) history.scrollRestoration = 'manual'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <Router>
-      <App />
-    </Router>
+    <ErrorBoundary>
+      <Router>
+        <App />
+      </Router>
+    </ErrorBoundary>
   </StrictMode>,
 )

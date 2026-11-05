@@ -4,6 +4,9 @@
   padding-bottom: var(--s-8);
 }
 .chead__crumb a {
+  display: inline-block;
+  padding-block: 0.6rem;
+  margin-block: -0.6rem;
   color: var(--muted);
   transition: color var(--dur-fast);
 }
@@ -638,7 +641,7 @@
   }
   .dsheet tr {
     display: grid;
-    grid-template-columns: 8.5rem 1fr;
+    grid-template-columns: 8.5rem minmax(0, 1fr);
     border-bottom: 1px solid var(--border);
     padding-block: 0.5rem;
   }
@@ -646,6 +649,9 @@
   .dsheet td {
     border: 0;
     padding: 0 var(--s-3) 0 0;
+  }
+  .dsheet__v {
+    white-space: normal;
   }
   .dsheet td.muted {
     grid-column: 2;

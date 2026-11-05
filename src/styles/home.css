@@ -26,7 +26,7 @@
 
 .hero__name {
   grid-area: name;
-  font-size: clamp(4.4rem, 13.9vw, 14rem);
+  font-size: clamp(4.4rem, 13.9vw, 12.8rem);
   margin-left: -0.04em;
 }
 .hero__line {

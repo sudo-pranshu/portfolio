@@ -1,9 +1,41 @@
-import { lazy, Suspense, useEffect } from 'react'
+import { lazy, Suspense, useEffect, type ComponentType } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { AnimatePresence, LazyMotion, MotionConfig, domAnimation, m } from 'motion/react'
 import { Nav } from './components/Nav'
 import { Footer } from './components/Footer'
 import Home from './pages/Home'
+
+/** A deploy can leave an open tab pointing at files that no longer exist. Reload once to pick up the new build. */
+const RELOAD_KEY = 'chunk-reload'
+const reloadOnce = () => {
+  try {
+    if (sessionStorage.getItem(RELOAD_KEY)) return false
+    sessionStorage.setItem(RELOAD_KEY, '1')
+  } catch {
+    return false
+  }
+  window.location.reload()
+  return true
+}
+if (typeof window !== 'undefined') {
+  window.addEventListener('vite:preloadError', (e) => {
+    if (reloadOnce()) e.preventDefault()
+  })
+  window.addEventListener('load', () => {
+    window.setTimeout(() => {
+      try {
+        sessionStorage.removeItem(RELOAD_KEY)
+      } catch {
+        /* storage unavailable */
+      }
+    }, 5000)
+  })
+}
+const retry = <T extends ComponentType<never>>(load: () => Promise<{ default: T }>) => () =>
+  load().catch((err) => {
+    if (reloadOnce()) return new Promise<{ default: T }>(() => {})
+    throw err
+  })
 
 const loaders = {
   work: () => import('./pages/Work'),
@@ -21,20 +53,20 @@ const loaders = {
   walle: () => import('./pages/work/WallE'),
   traffic: () => import('./pages/work/Traffic'),
 }
-const Work = lazy(loaders.work)
-const About = lazy(loaders.about)
-const Experience = lazy(loaders.experience)
-const Education = lazy(loaders.education)
-const Contact = lazy(loaders.contact)
-const Resume = lazy(loaders.resume)
-const NotFound = lazy(loaders.notFound)
-const ParkinSense = lazy(loaders.parkinsense)
-const CircuitVision = lazy(loaders.circuitvision)
-const TremoSense = lazy(loaders.tremosense)
-const NaviSight = lazy(loaders.navisight)
-const RLCar = lazy(loaders.rlcar)
-const WallE = lazy(loaders.walle)
-const Traffic = lazy(loaders.traffic)
+const Work = lazy(retry(loaders.work))
+const About = lazy(retry(loaders.about))
+const Experience = lazy(retry(loaders.experience))
+const Education = lazy(retry(loaders.education))
+const Contact = lazy(retry(loaders.contact))
+const Resume = lazy(retry(loaders.resume))
+const NotFound = lazy(retry(loaders.notFound))
+const ParkinSense = lazy(retry(loaders.parkinsense))
+const CircuitVision = lazy(retry(loaders.circuitvision))
+const TremoSense = lazy(retry(loaders.tremosense))
+const NaviSight = lazy(retry(loaders.navisight))
+const RLCar = lazy(retry(loaders.rlcar))
+const WallE = lazy(retry(loaders.walle))
+const Traffic = lazy(retry(loaders.traffic))
 
 /** Route chunks are small; fetch them all once the first page is idle so navigation never waits. */
 function usePrefetchRoutes() {

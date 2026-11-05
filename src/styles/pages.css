@@ -64,6 +64,7 @@
   gap: 0.35rem;
 }
 .windex__tech {
+  overflow-wrap: anywhere;
   font-family: var(--f-mono);
   font-size: 0.75rem;
   color: var(--muted);
@@ -122,7 +123,7 @@
 
 @media (max-width: 900px) {
   .windex__link {
-    grid-template-columns: 2.5rem 1fr 2rem;
+    grid-template-columns: 2.5rem minmax(0, 1fr) 2rem;
   }
   .windex__idx {
     grid-column: 1;
@@ -622,6 +623,36 @@ a.sheet__item:hover .sheet__go {
   .layers__set li {
     white-space: normal;
   }
+}
+
+/* ------------------------------------------------ Error fallback */
+.fatal {
+  min-height: 70vh;
+  display: grid;
+  align-items: center;
+  padding-block: 6rem;
+}
+.fatal__title {
+  font-size: clamp(2.4rem, 8vw, 4.5rem);
+  line-height: 1;
+  margin: 0.75rem 0 1rem;
+  font-weight: 400;
+}
+.fatal__text {
+  max-width: 46ch;
+  margin: 0 0 1.5rem;
+  color: var(--muted);
+}
+.fatal__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+button.rbtn {
+  font: inherit;
+  font-family: var(--f-mono);
+  font-size: 0.8rem;
+  cursor: pointer;
 }
 
 /* ------------------------------------------------ Résumé chooser */
