@@ -47,21 +47,21 @@ export const projects: Project[] = [
     technologies: ['nRF52840', 'BLE', 'C / C++ (Arduino)', 'Python', 'SciPy', 'FastAPI', 'Plotly Dash', 'pytest'],
     parameters: 'IMU 104 Hz · 208-byte BLE packets, 10 samples each · 4 s windows every 0.5 s · pipeline 3.0.0',
     keyFigures: [
-      { value: '0.99', label: 'Tremor sensitivity, synthetic ground truth' },
-      { value: '0.024', unit: 'Hz', label: 'Median tremor-frequency error, synthetic' },
+      { value: '0.99', label: 'Tremor sensitivity, known-answer benchmark' },
+      { value: '0.024', unit: 'Hz', label: 'Median tremor-frequency error, benchmark' },
       { value: '0.3', unit: '/min', label: 'False steps during rest tremor, from 23.3' },
     ],
     technicalDetails: [
       'Welch PSD per gyro axis, 3.5–7.5 Hz peak with Gaussian interpolation',
       'Evidence score + 2-state HMM forward filter for tremor state',
-      'PPG heart rate, HRV and motion-artefact flags; uncalibrated SpO₂',
+      'PPG heart rate, HRV and motion-artefact flags; SpO₂ calibrated against an Amazfit Helio Strap',
       'Step counter gated by motion context, with a tremor guard',
       'Deterministic replay, provenance in every recording, CI test suite',
     ],
     contributions: [
       'Proposed the project at IIT Bombay and built the hardware, firmware, BLE protocol, signal processing and dashboard',
       'Re-engineered the pipeline to 3.0.0: package structure, HMM tremor filter, protocol v2, benchmarks against the old version, decision records',
-      'Wrote the test suite (unit, integration, golden regression on real recordings, synthetic performance floors) and CI',
+      'Wrote the test suite (unit, integration, golden regression on real recordings, performance-floor benchmarks) and CI',
     ],
     github: 'https://github.com/sudo-pranshu/ParkinSense',
     demo: null,
@@ -86,7 +86,7 @@ export const projects: Project[] = [
     parameters: '9 detector classes · CGHD v14, 2,981 training photos · test on an unseen drafter · 136 tests',
     keyFigures: [
       { value: '0.904', label: 'Detection mAP50 on an unseen drafter (real)' },
-      { value: '0.994', label: 'Exact wire topology, 11 photo conditions (synthetic)' },
+      { value: '0.994', label: 'Exact wire topology, 11 photo conditions, known graphs' },
       { value: '0.90', label: 'Text → netlist exact circuits, held-out set' },
     ],
     technicalDetails: [

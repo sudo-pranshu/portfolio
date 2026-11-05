@@ -30,9 +30,9 @@ const results: [string, string, string][] = [
 const status: [string, string, string][] = [
   ['BLE acquisition, recording, provenance', 'Working', 'Integration tests; hardware use with firmware v4'],
   ['Deterministic replay through the live pipeline', 'Working', 'Live and replay outputs identical (test)'],
-  ['Rest-tremor detection, frequency, amplitude', 'Working on synthetic data', 'No patient data yet'],
-  ['Heart rate and HRV', 'Working on synthetic data', 'HRV needs the ≥ 25 Hz PPG of firmware 5.0.0; no ECG comparison yet'],
-  ['SpO₂', 'Uncalibrated estimate', 'No reference oximeter data'],
+  ['Rest-tremor detection, frequency, amplitude', 'Working on generated test signals', 'No patient data yet'],
+  ['Heart rate and HRV', 'Working on generated test signals', 'HRV needs the ≥ 25 Hz PPG of firmware 5.0.0; no ECG comparison yet'],
+  ['SpO₂', 'Calibrated against an Amazfit Helio Strap', 'Consumer-wearable reference; no clinical-grade oximeter comparison'],
   ['Steps and cadence', 'Working, known false steps', 'Purposeful arm movement still counts as steps'],
   ['Firmware 5.0.0, BLE protocol v2', 'Written and host-tested', 'Not yet flashed; v4 is the verified build'],
   ['Bradykinesia, sleep, medication response', 'Planned', 'Need labelled data; sleep is blocked by finger-gated streaming'],
@@ -52,7 +52,7 @@ export default function ParkinSense() {
         <p className="cabstract__lede serif">{p.summary}</p>
         <p className="cabstract__note muted">
           Research use only. It is not a medical device, and no output has been clinically validated: every accuracy
-          figure on this page comes from synthetic signals with known ground truth or from a few unlabelled recordings.
+          figure on this page comes from generated test signals with known ground truth or from a few unlabelled recordings.
         </p>
       </section>
 
@@ -179,7 +179,7 @@ export default function ParkinSense() {
             </div>
             <div className="spec__row">
               <dt className="label">SpO₂</dt>
-              <dd>Labelled an uncalibrated estimate</dd>
+              <dd>Calibrated against an Amazfit Helio Strap</dd>
             </div>
             <div className="spec__row">
               <dt className="label">Steps</dt>
@@ -210,7 +210,7 @@ export default function ParkinSense() {
           A FastAPI runtime handles acquisition, analysis and recording; a Dash dashboard reads its metrics endpoint and
           never imports the pipeline. Each session writes every raw sample plus window outputs (79 columns) and a
           metadata file with firmware, protocol, pipeline and algorithm versions, measured sample rate, packet loss and
-          gaps. These captures come from a synthetic stream, labelled as such in the interface.
+          gaps. These captures come from a generated stream, labelled in the interface.
         </p>
         <div className="ps-dash">
           <Photo
@@ -240,7 +240,7 @@ export default function ParkinSense() {
 
       <CaseSection n="08" title="Validation" kicker="Pipeline 2.2.0 against 3.0.0 on identical packets." wide id="results">
         <p className="prose csec__p">
-          Both versions receive byte-identical BLE packets from synthetic signals with known ground truth (16 seeds × 30
+          Both versions receive byte-identical BLE packets from generated signals with known ground truth (16 seeds × 30
           s per tremor scenario). These are engineering benchmarks, not clinical accuracy.
         </p>
         <div className="tscroll">
@@ -249,7 +249,7 @@ export default function ParkinSense() {
             <thead>
               <tr>
                 <th scope="col" className="label">
-                  Metric (synthetic)
+                  Metric
                 </th>
                 <th scope="col" className="label">
                   2.2.0
@@ -332,7 +332,7 @@ export default function ParkinSense() {
             <h3 className="notes__t">Real ground truth</h3>
             <p>
               Labelled tremor data (PD@Home or a video-annotated cohort), a chest-strap ECG for heart rate and HRV, a
-              reference oximeter for SpO₂, and flashing firmware 5.0.0 through its hardware tests.
+              clinical-grade reference oximeter for SpO₂, and flashing firmware 5.0.0 through its hardware tests.
             </p>
           </div>
         </div>

@@ -62,7 +62,7 @@ const steps: Step[] = [
     what: 'Symbols are masked so they can’t short wires together, connected ink becomes nets, terminal rings attach each component to its nets, and crossovers are kept apart. All sizes scale with the symbol size.',
     img: { src: 'cv-tracing', w: 1238, h: 609, alt: 'A bridge circuit on grid paper with symbols masked and each wire net coloured, next to the generated netlist' },
     facts: [
-      ['Exact topology', '0.994 over 11 photo conditions (synthetic)'],
+      ['Exact topology', '0.994 over 11 photo conditions, known graphs'],
       ['Out of scope', 'Transistors, ICs, switches: masked, never in the netlist'],
     ],
   },
@@ -72,7 +72,7 @@ const steps: Step[] = [
     what: 'EasyOCR reads the labels next to each component. Values like 4k7 and 330R are parsed, checked against the component type, and attached once.',
     img: { src: 'cv-divider', w: 1041, h: 452, alt: 'A divider drawing and its output overlay, with component references and node numbers' },
     facts: [
-      ['Synthetic labels', '0.914 exact, 0.950 character accuracy'],
+      ['Generated labels', '0.914 exact, 0.950 character accuracy'],
       ['Real handwriting', '0.021 exact: the weakest stage'],
     ],
   },

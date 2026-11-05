@@ -15,8 +15,8 @@ const results: [string, string, string][] = [
   ['Correct circuit, ground-truth boxes', '37.5 %', 'Real CGHD, 48 analog photos'],
   ['Correct circuit, detector boxes', '10.4 %', 'Real CGHD, 48 analog photos'],
   ['OCR on handwritten labels, exact', '0.021', 'Real CGHD'],
-  ['Exact wire topology, 11 photo conditions', '0.994', 'Synthetic, known graphs'],
-  ['End to end with ground-truth boxes', '18 / 18', 'Synthetic drafters'],
+  ['Exact wire topology, 11 photo conditions', '0.994', 'Known graphs'],
+  ['End to end with ground-truth boxes', '18 / 18', 'Generated drafters'],
   ['Text → netlist, held-out sentences', '0.90 exact', 'Hand-written, evaluated once'],
   ['Text → netlist, teammate’s blind set', '0.75 exact', 'Hand-written, evaluated once'],
   ['Unit and regression tests', '136 pass', '—'],
@@ -35,7 +35,7 @@ export default function CircuitVision() {
       <section className="wrap cabstract">
         <p className="cabstract__lede serif">{p.summary}</p>
         <p className="cabstract__note muted">
-          Every result is labelled real (CGHD photos), synthetic (generated with known answers) or hand-written test
+          Every result is labelled real (CGHD photos), generated (with known answers) or hand-written test
           sentences, and the numbers on this page come straight from the files in the repository.
         </p>
       </section>
@@ -76,7 +76,7 @@ export default function CircuitVision() {
         </p>
       </CaseSection>
 
-      <CaseSection n="04" title="Results" kicker="Real, synthetic and hand-written, kept apart." wide id="results">
+      <CaseSection n="04" title="Results" kicker="Real, generated and hand-written, kept apart." wide id="results">
         <div className="tscroll">
           <table className="dsheet">
             <caption className="sr-only">CircuitVision results</caption>
@@ -129,7 +129,7 @@ export default function CircuitVision() {
             <span className="label label--accent">Measurement</span>
             <h3 className="notes__t">No real ground-truth graphs</h3>
             <p>
-              CGHD has no circuit graphs, so exact topology is measured on synthetic data and real topology through
+              CGHD has no circuit graphs, so exact topology is measured on generated data and real topology through
               proxies and 12 hand-checked reference netlists.
             </p>
           </div>

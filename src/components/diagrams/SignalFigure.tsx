@@ -62,7 +62,7 @@ export function SignalFigure({ compact = false, caption = true }: Props) {
         viewBox={`0 0 ${W} ${H}`}
         className="sig__svg"
         role="img"
-        aria-label="Synthetic accelerometer signal with slow voluntary movement, mains noise and a 5.4 hertz tremor burst. Viewed through the 3.5 to 7.5 hertz tremor band only the tremor remains, and a two-threshold detector marks the tremor interval."
+        aria-label="Generated accelerometer signal with slow voluntary movement, mains noise and a 5.4 hertz tremor burst. Viewed through the 3.5 to 7.5 hertz tremor band only the tremor remains, and a two-threshold detector marks the tremor interval."
         preserveAspectRatio="none"
       >
         {/* second ticks */}
@@ -103,7 +103,7 @@ export function SignalFigure({ compact = false, caption = true }: Props) {
         <figcaption className="sig__cap">
           <span className="label label--fg">Fig. 02 · The tremor band, computed in your browser</span>
           <span className="muted">
-            Synthetic input: slow arm movement, 50 Hz pickup and a 5.4 Hz burst, sampled at 104 Hz, viewed through the
+            Generated input: slow arm movement, 50 Hz pickup and a 5.4 Hz burst, sampled at 104 Hz, viewed through the
             3.5–7.5 Hz tremor band. The pipeline itself scores the Welch spectrum of each 4 s window; thresholds
             (dashed) are illustrative.
           </span>
