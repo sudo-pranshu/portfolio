@@ -11,6 +11,7 @@ const loaders = {
   experience: () => import('./pages/Experience'),
   education: () => import('./pages/Education'),
   contact: () => import('./pages/Contact'),
+  resume: () => import('./pages/Resume'),
   notFound: () => import('./pages/NotFound'),
   parkinsense: () => import('./pages/work/ParkinSense'),
   circuitvision: () => import('./pages/work/CircuitVision'),
@@ -25,6 +26,7 @@ const About = lazy(loaders.about)
 const Experience = lazy(loaders.experience)
 const Education = lazy(loaders.education)
 const Contact = lazy(loaders.contact)
+const Resume = lazy(loaders.resume)
 const NotFound = lazy(loaders.notFound)
 const ParkinSense = lazy(loaders.parkinsense)
 const CircuitVision = lazy(loaders.circuitvision)
@@ -88,6 +90,7 @@ export default function App() {
             <Route path="/experience" element={<Experience />} />
             <Route path="/education" element={<Education />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/resume" element={<Resume />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AnimatePresence>

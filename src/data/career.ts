@@ -102,11 +102,11 @@ export const skills = [
 /** Domain × project matrix. Every mark is backed by a resume line. */
 export const domainColumns = [
   { key: 'ps', label: 'ParkinSense', to: '/work/parkinsense' },
-  { key: 'cv', label: 'CircuitVision', to: '/work/circuitvision' },
   { key: 'ts', label: 'TremoSense', to: '/work/tremosense' },
   { key: 'ns', label: 'NaviSight', to: '/work/navisight' },
-  { key: 'rl', label: 'RL Car', to: '/work/rl-autonomous-car' },
+  { key: 'cv', label: 'CircuitVision', to: '/work/circuitvision' },
   { key: 'we', label: 'Wall-E', to: '/work/wall-e' },
+  { key: 'rl', label: 'RL Car', to: '/work/rl-autonomous-car' },
   { key: 'iitb', label: 'IIT Bombay ’25', to: '/experience' },
   { key: 'sci', label: 'Scientechnic', to: '/experience' },
 ] as const

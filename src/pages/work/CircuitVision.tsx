@@ -44,6 +44,35 @@ export default function CircuitVision() {
         <BeforeAfter />
       </section>
 
+      <section className="wrap cv-gallery" aria-label="Detector output on hand-drawn circuits">
+        <h2 className="label cv-gallery__h">What the detector sees</h2>
+        <div className="cv-gallery__grid">
+          <Photo
+            src="assets/work/cv-detect-1"
+            width={1269}
+            height={952}
+            alt="A hand-drawn audio circuit on grid paper, with coloured boxes over each resistor, capacitor, ground, junction and text label"
+          />
+          <Photo
+            src="assets/work/cv-detect-2"
+            width={1269}
+            height={952}
+            alt="A hand-drawn 555 timer circuit on a notebook page, with boxes over the resistors, capacitors, grounds, junctions and values"
+          />
+          <Photo
+            className="cv-gallery__wide"
+            src="assets/work/cv-detect-3"
+            width={1280}
+            height={960}
+            alt="A crumpled hand-drawn microcontroller schematic with boxes over resistors, capacitors, diodes, grounds, crossovers, junctions and text"
+          />
+        </div>
+        <p className="cv-gallery__cap muted">
+          Detector output on three hand-drawn circuits, from a clean grid-paper sketch to a crumpled page. Resistors are
+          red, capacitors green, diodes magenta, grounds black, junctions cyan, crossovers blue and text grey.
+        </p>
+      </section>
+
       <CaseSection n="01" title="Why" kicker="Drawing is fast; netlists are not." id="why">
         <p className="prose">
           Students and engineers sketch circuits by hand, then retype them as netlists to simulate them. That step is

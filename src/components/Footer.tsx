@@ -5,6 +5,7 @@ import { getProject } from '../data/projects'
 
 function sheetName(path: string) {
   if (path === '/') return 'Index'
+  if (path === '/resume') return 'Résumé'
   const p = path.match(/^\/work\/(.+)$/)
   if (p) return getProject(p[1])?.title ?? 'Not found'
   return navItems.find((n) => n.to === path)?.label ?? 'Not found'
@@ -58,9 +59,7 @@ export function Footer() {
                   {n.label}
                 </Link>
               ))}
-              <a href={personal.resume} target="_blank" rel="noopener">
-                Résumé
-              </a>
+              <Link to="/resume">Résumé</Link>
             </span>
           </nav>
         </div>

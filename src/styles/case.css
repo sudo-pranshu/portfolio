@@ -1015,3 +1015,38 @@
     font-size: 0.6rem;
   }
 }
+
+/* CircuitVision: detector gallery */
+.cv-gallery {
+  padding-block: clamp(1.5rem, 4vw, 3rem);
+}
+.cv-gallery__h {
+  margin: 0 0 1rem;
+}
+.cv-gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.75rem, 2vw, 1.25rem);
+}
+.cv-gallery__grid .photo {
+  margin: 0;
+}
+.cv-gallery__grid .photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--border);
+}
+.cv-gallery__wide {
+  grid-column: 1 / -1;
+}
+.cv-gallery__cap {
+  margin: 0.9rem 0 0;
+  max-width: 70ch;
+  font-size: 0.9em;
+}
+@media (max-width: 640px) {
+  .cv-gallery__grid {
+    grid-template-columns: 1fr;
+  }
+}

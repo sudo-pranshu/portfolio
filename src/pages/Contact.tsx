@@ -1,5 +1,6 @@
 import { Page } from '../components/Page'
 import { CopyEmail } from '../components/CopyEmail'
+import { Link } from 'react-router-dom'
 import { personal, socials } from '../config/personal'
 
 export default function Contact() {
@@ -65,12 +66,12 @@ export default function Contact() {
             <h2 className="sheet__h label">On paper</h2>
             <ul>
               <li>
-                <a href={personal.resume} className="sheet__item" target="_blank" rel="noopener" download="Pranshu-Kumar-Resume.pdf">
+                <Link to="/resume" className="sheet__item">
                   <span className="label">Résumé</span>
                   <span className="sheet__v">
-                    PDF, one page <span className="sheet__go" aria-hidden="true">↓</span>
+                    PDF, one or two pages <span className="sheet__go" aria-hidden="true">→</span>
                   </span>
-                </a>
+                </Link>
               </li>
               <li>
                 <div className="sheet__item sheet__item--static">

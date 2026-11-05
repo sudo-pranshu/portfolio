@@ -75,9 +75,9 @@ export function Nav() {
             <span className="nav__themeicon" aria-hidden="true" />
             {theme === 'dark' ? 'Light' : 'Dark'}
           </button>
-          <a className="nav__cv" href={personal.resume} target="_blank" rel="noopener">
-            Résumé<span aria-hidden="true"> ↗</span>
-          </a>
+          <NavLink className="nav__cv" to="/resume">
+            Résumé<span aria-hidden="true"> →</span>
+          </NavLink>
           <button
             ref={btnRef}
             type="button"
@@ -129,9 +129,9 @@ export function Nav() {
                   {personal.email}
                 </a>
                 <div className="menu__foot-row">
-                  <a className="link" href={personal.resume} target="_blank" rel="noopener">
-                    Résumé PDF <span className="arrow">↗</span>
-                  </a>
+                  <NavLink className="link" to="/resume">
+                    Résumé <span className="arrow">→</span>
+                  </NavLink>
                   <button type="button" className="link" onClick={toggle}>
                     {theme === 'dark' ? 'Light theme' : 'Dark theme'}
                   </button>

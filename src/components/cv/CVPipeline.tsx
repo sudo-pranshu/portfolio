@@ -38,7 +38,7 @@ const steps: Step[] = [
     id: 'detect',
     name: 'Detect',
     what: 'YOLOv8s finds components, junctions, crossovers and text. It was trained on the CGHD handwritten-circuit dataset and tested on a drafter it never saw.',
-    img: { src: 'cv-gate2-overlays', w: 1600, h: 636, alt: 'CGHD training photos with converted bounding-box labels drawn over each symbol' },
+    img: { src: 'cv-detect-1', w: 1269, h: 952, alt: 'A hand-drawn audio circuit on grid paper with the detector’s boxes over every resistor, capacitor, ground, junction and text label' },
     facts: [
       ['Classes', 'Resistor, capacitor, inductor, voltage source, diode, ground, junction, crossover, text'],
       ['Data', '2,981 train · 96 val · 96 test photos'],

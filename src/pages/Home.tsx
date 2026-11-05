@@ -162,29 +162,6 @@ export default function Home() {
         </Reveal>
 
         <div className="wrap">
-          {/* CircuitVision: second flagship, image-led */}
-          <Reveal className="cvf">
-            <div className="cvf__media">
-              <BeforeAfter />
-            </div>
-            <Link to="/work/circuitvision" className="cvf__text">
-              <span className="label label--accent">{cv.index} · Flagship · Computer vision</span>
-              <h3 className="cvf__title serif">{cv.title}</h3>
-              <p className="cvf__sub">{cv.subtitle}</p>
-              <dl className="cvf__figs">
-                {cv.keyFigures.map((f) => (
-                  <div key={f.label}>
-                    <dt className="label">{f.label}</dt>
-                    <dd className="num">{f.value}</dd>
-                  </div>
-                ))}
-              </dl>
-              <span className="link">
-                Read the case study <span className="arrow">→</span>
-              </span>
-            </Link>
-          </Reveal>
-
           {/* TremoSense: offset technical panel */}
           <Reveal className="tremo">
             <Link to="/work/tremosense" className="tremo__link">
@@ -212,8 +189,59 @@ export default function Home() {
             <ul className="also__list">
               {[
                 { p: ns, tag: 'Assistive', chain: ['Ultrasonic → haptics', 'ESP32-CAM → TFLite, on-device'] },
-                { p: rl, tag: 'Reinforcement learning', chain: ['Safety layer + Q-learning → lane, speed', 'DQN in PyTorch'] },
+              ].map(({ p, tag, chain }, i) => (
+                <Reveal as="li" key={p.slug} delay={i * 0.08}>
+                  <Link to={`/work/${p.slug}`} className="also__row">
+                    <span className="label">{p.index}</span>
+                    <span className="also__title serif">{p.shortTitle ?? p.title}</span>
+                    <span className="also__sub">
+                      {p.subtitle}
+                      <span className="label">{tag}</span>
+                    </span>
+                    <span className="also__chain">
+                      {chain.map((c) => (
+                        <span key={c}>{c}</span>
+                      ))}
+                    </span>
+                    <span className="also__arrow" aria-hidden="true">
+                      →
+                    </span>
+                  </Link>
+                </Reveal>
+              ))}
+            </ul>
+          </div>
+
+          {/* CircuitVision: second flagship, image-led */}
+          <Reveal className="cvf">
+            <div className="cvf__media">
+              <BeforeAfter />
+            </div>
+            <Link to="/work/circuitvision" className="cvf__text">
+              <span className="label label--accent">{cv.index} · Flagship · Computer vision</span>
+              <h3 className="cvf__title serif">{cv.title}</h3>
+              <p className="cvf__sub">{cv.subtitle}</p>
+              <dl className="cvf__figs">
+                {cv.keyFigures.map((f) => (
+                  <div key={f.label}>
+                    <dt className="label">{f.label}</dt>
+                    <dd className="num">{f.value}</dd>
+                  </div>
+                ))}
+              </dl>
+              <span className="link">
+                Read the case study <span className="arrow">→</span>
+              </span>
+            </Link>
+          </Reveal>
+
+          {/* NaviSight + Wall-E: compact ledger rows */}
+          <div className="also">
+            <span className="also__label label">More</span>
+            <ul className="also__list">
+              {[
                 { p: we, tag: 'Robotics · SRA', chain: ['Light sensor array → PID → motors'] },
+                { p: rl, tag: 'Reinforcement learning', chain: ['Safety layer + Q-learning → lane, speed', 'DQN in PyTorch'] },
                 { p: tr, tag: 'Computer vision', chain: ['Camera → YOLOv8 → OCR', 'CSV log → Streamlit'] },
               ].map(({ p, tag, chain }, i) => (
                 <Reveal as="li" key={p.slug} delay={i * 0.08}>
@@ -325,9 +353,9 @@ export default function Home() {
           </a>
           <div className="cta__row">
             <CopyEmail />
-            <a className="link" href={personal.resume} target="_blank" rel="noopener">
-              Résumé, PDF <span className="arrow">↗</span>
-            </a>
+            <Link to="/resume" className="link">
+              Résumé, 1 or 2 pages <span className="arrow">→</span>
+            </Link>
             <Link to="/contact" className="link">
               Phone and profiles <span className="arrow">→</span>
             </Link>

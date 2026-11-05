@@ -21,6 +21,7 @@ export const personal = {
   github: 'https://github.com/sudo-pranshu',
   instagram: 'https://www.instagram.com/prvnshu/',
   resume: `${base}assets/resume.pdf`,
+  resumeTwoPage: `${base}assets/resume-2page.pdf`,
   photo: {
     jpg: `${base}assets/profile.jpg`,
     webp: `${base}assets/profile.webp`,

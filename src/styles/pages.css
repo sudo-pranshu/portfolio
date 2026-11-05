@@ -623,3 +623,105 @@ a.sheet__item:hover .sheet__go {
     white-space: normal;
   }
 }
+
+/* ------------------------------------------------ Résumé chooser */
+.resume__back {
+  margin-bottom: 1.5rem;
+}
+.resume__back .link {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+}
+.resume__grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  align-items: start;
+  padding-bottom: clamp(3rem, 8vw, 6rem);
+}
+.rcard article {
+  border: 1px solid var(--border);
+  padding: clamp(1rem, 2.2vw, 1.75rem);
+  display: grid;
+  gap: 1rem;
+}
+.rcard--rec article {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+.rcard__title {
+  font-size: clamp(1.75rem, 3vw, 2.4rem);
+  line-height: 1.05;
+  margin: 0.25rem 0 0;
+  font-weight: 400;
+}
+.rcard__prev {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+.rcard__page {
+  margin: 0;
+}
+.rcard__page img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--border);
+  background: #fff;
+}
+.rcard__blurb {
+  margin: 0;
+  max-width: 60ch;
+}
+.rcard__points {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.35rem;
+  color: var(--muted);
+  font-size: 0.95em;
+}
+.rcard__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.rbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  min-height: 44px;
+  padding: 0.6rem 1.1rem;
+  border: 1px solid currentColor;
+  font-family: var(--f-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: inherit;
+}
+.rbtn:hover,
+.rbtn:focus-visible {
+  background: var(--foreground);
+  color: var(--background);
+}
+.rbtn--primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-contrast);
+}
+.rbtn--primary:hover,
+.rbtn--primary:focus-visible {
+  background: var(--foreground);
+  border-color: var(--foreground);
+  color: var(--background);
+}
+@media (max-width: 860px) {
+  .resume__grid {
+    grid-template-columns: 1fr;
+  }
+}
