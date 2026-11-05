@@ -59,12 +59,6 @@ Bachelor of Technology in Electronics and Telecommunications; Minor in Artificia
 \item Engineered tremor analytics: Welch PSD on 4\,s windows, 3.5--7.5\,Hz peak interpolation, SNR and harmonic rejection, and a 2-state HMM; raised sensitivity from 0.69 to 0.99 at 1.00 specificity with 0.024\,Hz median frequency error (synthetic ground truth).
 \item Developed PPG heart rate/HRV with motion-artefact flags, a tremor-gated step counter (false steps in rest tremor 23.3 $\to$ 0.3/min, synthetic), bit-exact replay, a live Dash dashboard and an 84-test CI suite.
 \end{itemize}
-\proj{\lnk{https://github.com/sudo-pranshu/CircuitVision}{CircuitVision} -- Hand-Drawn Circuit to SPICE Netlist (team of 2, AI/ML minor)}{YOLOv8, OpenCV, EasyOCR, ngspice}
-\begin{itemize}
-\item Trained YOLOv8s on the CGHD handwritten-circuit dataset (2,981 photos, 9 classes), reaching 0.904 mAP50 and 0.611 mAP50-95 on an unseen drafter.
-\item Built paper-relative binarisation, HOG + SVM orientation and polarity classification, and wire tracing with symbol masking and crossovers (0.994 exact topology across 11 synthetic photo conditions).
-\item Generated SPICE netlists from EasyOCR-read values, validated by a CFG/Earley parser and simulated in ngspice; added an HMM text-to-netlist path (0.90 exact on held-out sentences); 136 tests.
-\end{itemize}
 \proj{\lnk{https://github.com/rkt-1597/TremoSense-Project}{TremoSense} -- Tremor-Suppressing Spoon on Zephyr RTOS (team of 3)}{Zephyr, C, EKF, LQR, Simulink}
 \begin{itemize}
 \item Built a two-axis servo gimbal (MG995 roll, FS90MG pitch) on the XIAO nRF52840 Sense: 208\,Hz IMU, 2-state EKF roll/pitch estimation and a 2$\times$4 LQR gain, with servo commands every 10\,ms through Zephyr threads, a message queue and a semaphore.
@@ -74,10 +68,17 @@ Bachelor of Technology in Electronics and Telecommunications; Minor in Artificia
 \begin{itemize}
 \item Built an ultrasonic smart cane with haptic and buzzer alerts and GPS (L80-M39) + HC-05 location sharing by SMS, and deployed offline TensorFlow Lite object recognition on an ESP32-CAM.
 \end{itemize}
+\proj{\lnk{https://github.com/sudo-pranshu/CircuitVision}{CircuitVision} -- Hand-Drawn Circuit to SPICE Netlist (team of 2, AI/ML minor)}{YOLOv8, OpenCV, EasyOCR, ngspice}
+\begin{itemize}
+\item Trained YOLOv8s on the CGHD handwritten-circuit dataset (2,981 photos, 9 classes), reaching 0.904 mAP50 and 0.611 mAP50-95 on an unseen drafter.
+\item Built paper-relative binarisation, HOG + SVM orientation and polarity classification, and wire tracing with symbol masking and crossovers (0.994 exact topology across 11 synthetic photo conditions).
+\item Generated SPICE netlists from EasyOCR-read values, validated by a CFG/Earley parser and simulated in ngspice; added an HMM text-to-netlist path (0.90 exact on held-out sentences); 136 tests.
+\end{itemize}
 \proj{Wall-E -- Self-Balancing, Line-Following Robot (SRA team)}{ESP32, ESP-IDF, PID}
 \begin{itemize}
 \item Implemented PID line following and PID self-balancing on an ESP32 with the in-house SRA Board.
 \end{itemize}
+
 
 \section{Achievements \& Extra-Curricular Activities}
 \begin{itemize}

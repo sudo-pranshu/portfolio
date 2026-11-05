@@ -67,18 +67,9 @@ Minor in Artificial Intelligence and Machine Learning
 \item Architected a complete end-to-end wearable system (custom firmware, BLE protocol, three parallel real-time signal-processing pipelines, live dashboard) for continuous Parkinson's monitoring, addressing the gap left by single-modality tremor wearables that ignore cardiac and activity context.
 \item Built a 104\,Hz sensor-fusion stream on a Seeed XIAO nRF52840 Sense with LSM6DS3 IMU and MAX30102 PPG, sending versioned 208-byte binary BLE packets (10 samples each) with sequence numbers, gap detection and measured device rate; designed BLE protocol v2 for $\sim$100\,Hz PPG.
 \item Designed the tremor pipeline: Welch PSD on 4\,s windows every 0.5\,s, 3.5--7.5\,Hz peak search with interpolation, SNR and harmonic rejection, REST/LOW MOTION/ACTIVE motion context and a 2-state HMM; raised sensitivity from 0.69 to 0.99 at 1.00 specificity with 0.024\,Hz median frequency error (synthetic ground truth).
-\item Developed a PPG pipeline from scratch (finger detection, signal-quality index, adaptive peak detection, RR intervals) producing heart rate, HRV (RMSSD, SDNN, pNN50) and SpO\textsubscript{2} calibrated against an Amazfit Helio Strap, with SEARCHING/LOCKED/TRACKING/LOST lock states; HR MAE at rest 0.37\,BPM (synthetic).
+\item Developed a PPG pipeline from scratch (finger detection, signal-quality index, adaptive peak detection, RR intervals) producing heart rate, HRV (RMSSD, SDNN, pNN50) and SpO\textsubscript{2} calibrated against an Amazfit Helio Strap, with SEARCHING, LOCKED, TRACKING and LOST lock states; HR MAE at rest 0.37\,BPM (synthetic).
 \item Engineered an accelerometer step counter gated by motion context and a tremor guard, cutting false steps during rest tremor from 23.3 to 0.3/min (synthetic); counted 69 steps against $\approx$86 expected on a real walking recording.
 \item Built a FastAPI + Plotly Dash runtime with bit-exact replay, per-recording provenance (79-column capture) and an 84-test CI suite with golden regression on real recordings, enabling offline analysis and future ML dataset generation.
-\end{itemize}
-
-\proj{\lnk{https://github.com/sudo-pranshu/CircuitVision}{CircuitVision} -- Hand-Drawn Circuit to SPICE Netlist \normalfont(AI/ML minor, team of 2; YOLOv8, OpenCV, EasyOCR, ngspice)}
-\begin{itemize}
-\item Built an end-to-end pipeline that turns a photo of a hand-drawn circuit into a simulated SPICE netlist: binarisation, symbol detection, orientation, wire tracing, value reading, netlist generation, grammar validation and ngspice simulation.
-\item Trained YOLOv8s on the CGHD handwritten-circuit dataset (2,981 training photos, 9 classes), reaching 0.904 mAP50 and 0.611 mAP50-95 on a held-out drafter.
-\item Implemented paper-relative binarisation, HOG + SVM orientation and polarity classification, and wire tracing with symbol masking and crossover handling (0.994 exact topology across 11 synthetic photo conditions).
-\item Generated netlists from EasyOCR-read values, validated by a CFG/Earley parser before simulation; added an HMM (Viterbi) text-to-netlist path scoring 0.90 exact on held-out sentences; delivered a Gradio app and 136 automated tests.
-\item Measured honestly on real photos: 37.5\% of 48 analog circuits fully correct with ground-truth boxes, 10.4\% with detector boxes; identified handwritten-value OCR as the main bottleneck.
 \end{itemize}
 
 \proj{\lnk{https://github.com/rkt-1597/TremoSense-Project}{TremoSense} -- Anti-Tremor Assistive Spoon for Parkinson's Patients \normalfont(Zephyr RTOS, C, EKF, LQR, Simulink)}
@@ -104,12 +95,22 @@ Minor in Artificial Intelligence and Machine Learning
 \item Integrating text-to-speech audio feedback and optimising form factor and power for daily outdoor use.
 \end{itemize}
 
+\proj{\lnk{https://github.com/sudo-pranshu/CircuitVision}{CircuitVision} -- Hand-Drawn Circuit to SPICE Netlist \normalfont(AI/ML minor, team of 2; YOLOv8, OpenCV, EasyOCR, ngspice)}
+\begin{itemize}
+\item Built an end-to-end pipeline that turns a photo of a hand-drawn circuit into a simulated SPICE netlist: binarisation, symbol detection, orientation, wire tracing, value reading, netlist generation, grammar validation and ngspice simulation.
+\item Trained YOLOv8s on the CGHD handwritten-circuit dataset (2,981 training photos, 9 classes), reaching 0.904 mAP50 and 0.611 mAP50-95 on a held-out drafter.
+\item Implemented paper-relative binarisation, HOG + SVM orientation and polarity classification, and wire tracing with symbol masking and crossover handling (0.994 exact topology across 11 synthetic photo conditions).
+\item Generated netlists from EasyOCR-read values, validated by a CFG/Earley parser before simulation; added an HMM (Viterbi) text-to-netlist path scoring 0.90 exact on held-out sentences; delivered a Gradio app and 136 automated tests.
+\item Measured honestly on real photos: 37.5\% of 48 analog circuits fully correct with ground-truth boxes, 10.4\% with detector boxes; identified handwritten-value OCR as the main bottleneck.
+\end{itemize}
+
 \proj{Wall-E -- Self-Balancing, Line-Following Robot \normalfont(ESP32, ESP-IDF, Git; SRA)}
 \begin{itemize}
 \item Co-designed a two-wheeled self-balancing, line-following robot on an ESP32 with the SRA's in-house SRA Board.
 \item Integrated a Light Sensor Array to detect white or black lines from reflectivity differences, and implemented PID control for line tracking and for balancing from positional feedback.
 \item Tuned PID gains through iterative testing to achieve reliable line-following and self-balancing across test scenarios.
 \end{itemize}
+
 
 \section{Achievements \& Extra-Curricular Activities}
 \begin{itemize}
