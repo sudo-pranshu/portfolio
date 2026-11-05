@@ -102,11 +102,11 @@ export const skills = [
 /** Domain × project matrix. Every mark is backed by a resume line. */
 export const domainColumns = [
   { key: 'ps', label: 'ParkinSense', to: '/work/parkinsense' },
+  { key: 'cv', label: 'CircuitVision', to: '/work/circuitvision' },
   { key: 'ts', label: 'TremoSense', to: '/work/tremosense' },
   { key: 'ns', label: 'NaviSight', to: '/work/navisight' },
   { key: 'rl', label: 'RL Car', to: '/work/rl-autonomous-car' },
   { key: 'we', label: 'Wall-E', to: '/work/wall-e' },
-  { key: 'tr', label: 'Traffic', to: '/work/traffic-management' },
   { key: 'iitb', label: 'IIT Bombay ’25', to: '/experience' },
   { key: 'sci', label: 'Scientechnic', to: '/experience' },
 ] as const
@@ -116,9 +116,9 @@ type ColKey = (typeof domainColumns)[number]['key']
 export const domains: { name: string; note: string; in: ColKey[] }[] = [
   { name: 'Embedded firmware', note: 'Zephyr RTOS, nRF52840, ESP32, Arduino', in: ['ps', 'ts', 'ns', 'we', 'iitb'] },
   { name: 'Wireless links', note: 'BLE packets, UDP, Bluetooth, GPS', in: ['ps', 'ns', 'iitb'] },
-  { name: 'Signal processing', note: 'Filters, peak detection, HRV, SQI', in: ['ps', 'ts'] },
+  { name: 'Signal processing', note: 'Welch spectra, filters, peak detection, HRV', in: ['ps', 'ts'] },
   { name: 'Estimation & control', note: 'EKF, LQR, PID', in: ['ts', 'we'] },
-  { name: 'Machine learning & vision', note: 'TensorFlow Lite, YOLOv8, OCR, Q-learning, DQN', in: ['ns', 'rl', 'tr'] },
+  { name: 'Machine learning & vision', note: 'YOLOv8, HOG + SVM, EasyOCR, TensorFlow Lite, HMMs, DQN', in: ['cv', 'ns', 'rl'] },
   { name: 'Robotics', note: 'Balancing, line following', in: ['we'] },
   { name: 'Building systems', note: 'KNX, BMS, DDC, AV-over-IP', in: ['sci'] },
 ]

@@ -1,7 +1,7 @@
 /**
  * Synthetic wrist-accelerometer trace + the ParkinSense motion chain, computed in the browser.
  * The INPUT is synthetic (clearly labelled in the UI). The FILTERS are real:
- * 50 Hz notch and a 4.0–7.5 Hz Butterworth band-pass (2nd-order HP + 2nd-order LP), at fs = 104 Hz.
+ * an illustrative view of the 3.5–7.5 Hz tremor band (2nd-order HP + 2nd-order LP), at fs = 104 Hz, after a 50 Hz notch.
  */
 
 export const FS = 104
@@ -98,7 +98,7 @@ export function computeTrace(): Trace {
   // Gravity removal (mean subtraction over the window), notch, band-pass
   const mean = raw.reduce((a, b) => a + b, 0) / n
   const g = raw.map((v) => v - mean)
-  const filtered = run(lowpass(7.5, FS), run(highpass(4.0, FS), run(notch(50, FS), g)))
+  const filtered = run(lowpass(7.5, FS), run(highpass(3.5, FS), run(notch(50, FS), g)))
 
   // Rectified, smoothed envelope and a two-threshold (hysteresis) state
   const envelope: number[] = []

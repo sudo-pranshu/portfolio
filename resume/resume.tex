@@ -1,0 +1,86 @@
+% Pranshu Kumar - resume. Build: xelatex resume.tex  (or: latexmk -xelatex resume.tex)
+\documentclass[10pt,letterpaper]{article}
+\usepackage[letterpaper,top=0.3in,bottom=0.28in,left=0.5in,right=0.5in]{geometry}
+\usepackage{fontspec}
+\IfFontExistsTF{Times New Roman}{\setmainfont{Times New Roman}}{\setmainfont{TeX Gyre Termes}}
+\usepackage{enumitem,titlesec,tabularx,xcolor}
+\usepackage[hidelinks]{hyperref}
+\definecolor{linkblue}{RGB}{17,85,204}
+\newcommand{\lnk}[2]{\href{#1}{\textcolor{linkblue}{#2}}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\linespread{0.96}
+\titleformat{\section}{\bfseries\normalsize\uppercase}{}{0pt}{}[\vspace{-0.75ex}\rule{\linewidth}{0.5pt}]
+\titlespacing*{\section}{0pt}{3pt}{2pt}
+\setlist[itemize]{leftmargin=0.85em,label={\scriptsize$\bullet$},labelsep=0.35em,itemsep=0pt,parsep=0pt,topsep=0.5pt,partopsep=0pt}
+\newcommand{\role}[2]{\par\vspace{2pt}\textbf{#1}\hfill\textbf{#2}\par}
+\newcommand{\proj}[2]{\par\vspace{2pt}\textbf{#1}\hfill{\small #2}\par}
+
+\begin{document}
+\begin{center}
+{\large\textbf{PRANSHU KUMAR}}\\[1pt]
+Mumbai/UAE \,|\, +91-9167306770 / +971-522012130 \,|\, \lnk{mailto:pranshu251205@gmail.com}{pranshu251205@gmail.com} \,|\, \lnk{https://www.linkedin.com/in/notpranshu/}{LinkedIn} \,|\, \lnk{https://github.com/sudo-pranshu}{GitHub}
+\end{center}
+\vspace{-8pt}
+
+\section{Education}
+\textbf{Veermata Jijabai Technological Institute (VJTI), Mumbai}\hfill\textbf{June 2027}\\
+Bachelor of Technology in Electronics and Telecommunications; Minor in Artificial Intelligence and Machine Learning\hfill\textbf{9.17 CGPA}
+
+\section{Technical Skills}
+\begin{itemize}
+\item \textbf{Programming:} C, C++, Python, SQL \quad \textbf{Embedded:} nRF52840, ESP32, Zephyr RTOS, ESP-IDF, Arduino IDE, BLE, I\textsuperscript{2}C
+\item \textbf{ML, Vision \& Data:} PyTorch, YOLOv8, OpenCV, EasyOCR, scikit-learn, NumPy, SciPy, Pandas, Excel
+\item \textbf{Tools \& OS:} MATLAB/Simulink, ngspice, AutoCAD, Git, pytest, FastAPI, Plotly Dash; Linux, Windows, macOS
+\end{itemize}
+
+\section{Professional Experience}
+\role{IIT Bombay, Mumbai, India \,|\, \textit{IoT Research Intern -- Machine Intelligence Program}}{June 2026 -- July 2026}
+\begin{itemize}
+\item Independently conceived, pitched and built ParkinSense, a wearable continuous-monitoring platform for Parkinson's disease, from concept to a working end-to-end prototype (firmware, BLE protocol, real-time signal processing, dashboard).
+\item Extended the lab's nRF52840/BLE IMU work into three parallel pipelines (motion, PPG/cardiac, activity) on one synchronised 104\,Hz stream, replacing offline single-axis tremor analysis with real-time, multi-axis, motion-context-aware detection.
+\end{itemize}
+\role{Scientechnic, Dubai, UAE \,|\, \textit{Project Engineering Intern -- Building Technologies Department}}{June 2025 -- July 2025}
+\begin{itemize}
+\item Implemented, tested and commissioned a KNX lighting control system at Amazon DXB30 Innovation Hub, Dubai Internet City: actuator configuration, addressing and line diagnostics on a central monitoring system.
+\item Designed I/O schedules (AI, DI, AO, DO) and selected DDC controllers for BMS projects including Burj Binghatti Jacob \& Co. Residences and GEMS Founders School, sized from equipment schedules, load demand and spare margins.
+\end{itemize}
+\role{IIT Bombay, Mumbai, India \,|\, \textit{IoT Research Intern -- Machine Intelligence Program}}{Feb 2025 -- May 2025}
+\begin{itemize}
+\item Acquired high-rate IMU data on nRF52840 Sense and ESP32 and optimised BLE transfer for IoT sensor networks.
+\item Diagnosed EMI-driven failures on a waterproof-cable serial link for a V-Guard submerged-pump project and contributed to the move to UDP wireless transmission, improving reliability under interference.
+\end{itemize}
+
+\section{Academic Projects}
+\proj{\lnk{https://github.com/sudo-pranshu/ParkinSense}{ParkinSense} -- Wearable IMU + PPG Platform for Parkinson's Tremor Monitoring}{nRF52840, BLE, Python, SciPy, Dash}
+\begin{itemize}
+\item Built a wrist wearable (XIAO nRF52840 Sense, LSM6DS3 IMU at 104\,Hz, MAX30102 PPG) streaming versioned 208-byte BLE packets of 10 samples with sequence numbers, gap detection and measured device rate; designed BLE protocol v2.
+\item Engineered tremor analytics: Welch PSD on 4\,s windows, 3.5--7.5\,Hz peak interpolation, SNR and harmonic rejection, and a 2-state HMM; raised sensitivity from 0.69 to 0.99 at 1.00 specificity with 0.024\,Hz median frequency error (synthetic ground truth).
+\item Developed PPG heart rate/HRV with motion-artefact flags, a tremor-gated step counter (false steps in rest tremor 23.3 $\to$ 0.3/min, synthetic), bit-exact replay, a live Dash dashboard and an 84-test CI suite.
+\end{itemize}
+\proj{\lnk{https://github.com/sudo-pranshu/CircuitVision}{CircuitVision} -- Hand-Drawn Circuit to SPICE Netlist (team of 2, AI/ML minor)}{YOLOv8, OpenCV, EasyOCR, ngspice}
+\begin{itemize}
+\item Trained YOLOv8s on the CGHD handwritten-circuit dataset (2,981 photos, 9 classes), reaching 0.904 mAP50 and 0.611 mAP50-95 on an unseen drafter.
+\item Built paper-relative binarisation, HOG + SVM orientation and polarity classification, and wire tracing with symbol masking and crossovers (0.994 exact topology across 11 synthetic photo conditions).
+\item Generated SPICE netlists from EasyOCR-read values, validated by a CFG/Earley parser and simulated in ngspice; added an HMM text-to-netlist path (0.90 exact on held-out sentences); 136 tests.
+\end{itemize}
+\proj{\lnk{https://github.com/rkt-1597/TremoSense-Project}{TremoSense} -- Tremor-Suppressing Spoon on Zephyr RTOS (team of 3)}{Zephyr, C, EKF, LQR, Simulink}
+\begin{itemize}
+\item Built a two-axis servo gimbal (MG995 roll, FS90MG pitch) on the XIAO nRF52840 Sense: 208\,Hz IMU, 2-state EKF roll/pitch estimation and a 2$\times$4 LQR gain, with servo commands every 10\,ms through Zephyr threads, a message queue and a semaphore.
+\item Validated the EKF--LQR design in MATLAB/Simulink at 1000\,Hz: over 90\% roll and 80\% pitch suppression across most of the 3--7\,Hz tremor band; residual RMS 0.346$^\circ$/0.573$^\circ$ under 8$^\circ$, 8\,Hz tremor.
+\end{itemize}
+\proj{NaviSight -- Assistive Navigation for the Visually Impaired}{Arduino, ESP32-CAM, TensorFlow Lite}
+\begin{itemize}
+\item Built an ultrasonic smart cane with haptic and buzzer alerts and GPS (L80-M39) + HC-05 location sharing by SMS, and deployed offline TensorFlow Lite object recognition on an ESP32-CAM.
+\end{itemize}
+\proj{Wall-E -- Self-Balancing, Line-Following Robot (SRA team)}{ESP32, ESP-IDF, PID}
+\begin{itemize}
+\item Implemented PID line following and PID self-balancing on an ESP32 with the in-house SRA Board.
+\end{itemize}
+
+\section{Achievements \& Extra-Curricular Activities}
+\begin{itemize}
+\item Academic Branch Topper (First Year) \,$\cdot$\, Organising team, Technovanza 2024 (4,000--5,000 participants) \,$\cdot$\, Member, Society of Robotics and Automation, VJTI
+\end{itemize}
+\end{document}

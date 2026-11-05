@@ -9,6 +9,7 @@ import { Interests } from '../components/Interests'
 import { SignalFigure } from '../components/diagrams/SignalFigure'
 import { DemoVideo } from '../components/DemoVideo'
 import { Photo } from '../components/Photo'
+import { BeforeAfter } from '../components/cv/BeforeAfter'
 import { SignalChain } from '../components/diagrams/SignalChain'
 import { SemesterPanel } from '../components/diagrams/SemesterPanel'
 import { personal } from '../config/personal'
@@ -17,6 +18,7 @@ import { education, experience, extras } from '../data/career'
 import { easeOut, lineReveal } from '../animations/motion'
 
 const ps = getProject('parkinsense')!
+const cv = getProject('circuitvision')!
 const ts = getProject('tremosense')!
 const ns = getProject('navisight')!
 const rl = getProject('rl-autonomous-car')!
@@ -115,7 +117,7 @@ export default function Home() {
             title={<span id="work-h">Selected work</span>}
             aside={
               <Link to="/work" className="link">
-                Index of all six <span className="arrow">→</span>
+                Index of all seven <span className="arrow">→</span>
               </Link>
             }
           />
@@ -160,6 +162,29 @@ export default function Home() {
         </Reveal>
 
         <div className="wrap">
+          {/* CircuitVision: second flagship, image-led */}
+          <Reveal className="cvf">
+            <div className="cvf__media">
+              <BeforeAfter />
+            </div>
+            <Link to="/work/circuitvision" className="cvf__text">
+              <span className="label label--accent">{cv.index} · Flagship · Computer vision</span>
+              <h3 className="cvf__title serif">{cv.title}</h3>
+              <p className="cvf__sub">{cv.subtitle}</p>
+              <dl className="cvf__figs">
+                {cv.keyFigures.map((f) => (
+                  <div key={f.label}>
+                    <dt className="label">{f.label}</dt>
+                    <dd className="num">{f.value}</dd>
+                  </div>
+                ))}
+              </dl>
+              <span className="link">
+                Read the case study <span className="arrow">→</span>
+              </span>
+            </Link>
+          </Reveal>
+
           {/* TremoSense: offset technical panel */}
           <Reveal className="tremo">
             <Link to="/work/tremosense" className="tremo__link">

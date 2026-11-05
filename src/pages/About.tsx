@@ -30,7 +30,7 @@ export default function About() {
               </p>
               <p>
                 That is why the projects don’t share one label. ParkinSense is a wearable, a radio protocol and a DSP
-                problem at once. TremoSense is estimation and control on a real-time OS. NaviSight puts a neural network
+                problem at once. CircuitVision is object detection, image processing and a grammar check on a photo of a sketch. TremoSense is estimation and control on a real-time OS. NaviSight puts a neural network
                 on a camera module. The RL car is a learning agent that still needs a safety layer. At Scientechnic I saw
                 the same thinking at building scale, with lighting controllers and BMS I/O instead of sensors on a wrist.
               </p>

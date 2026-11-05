@@ -1,5 +1,5 @@
 /**
- * Project data. Sources: the résumé, and for ParkinSense, TremoSense, the RL car and the traffic system their public GitHub repositories
+ * Project data. Sources: the résumé, and for ParkinSense, CircuitVision, TremoSense, the RL car and the traffic system their public GitHub repositories
  * (README + source), which take precedence where the two disagree.
  * `github` / `demo` are null until a public link exists; the UI hides them when null.
  * `images` is empty until real project photos are added to /public/assets/work/<slug>/.
@@ -7,7 +7,7 @@
 import { asset } from '../config/personal'
 
 export type Project = {
-  slug: 'parkinsense' | 'tremosense' | 'navisight' | 'rl-autonomous-car' | 'wall-e' | 'traffic-management'
+  slug: 'parkinsense' | 'circuitvision' | 'tremosense' | 'navisight' | 'rl-autonomous-car' | 'wall-e' | 'traffic-management'
   index: string
   title: string
   /** Optional shorter name for compact lists. */
@@ -23,6 +23,8 @@ export type Project = {
   /** One line of documented parameters for the case-study header. */
   parameters?: string
   technicalDetails: string[]
+  /** What Pranshu did on the project. */
+  contributions?: string[]
   github: string | null
   demo: string | null
   images: { src: string; alt: string }[]
@@ -34,27 +36,32 @@ export const projects: Project[] = [
     slug: 'parkinsense',
     index: '01',
     title: 'ParkinSense',
-    subtitle: "Continuous multi-modal wearable platform for Parkinson's monitoring",
+    subtitle: 'Wrist-worn IMU + PPG research platform for Parkinson’s tremor monitoring',
     description:
-      'A wrist wearable that reads motion and pulse on one synchronised stream, then turns it into tremor, cardiac and gait measures in real time.',
+      'An nRF52840 wearable that streams motion and pulse over BLE into a reproducible Python pipeline for tremor, heart-rate and activity biomarkers.',
     summary:
-      'Most tremor wearables watch one signal on one axis, offline. ParkinSense runs three pipelines in parallel, motion, PPG and activity, on one timestamped stream, and lets each qualify the others: steps are not counted while the wrist is trembling, and heart readings carry a confidence that knows what the hand was doing.',
-    context: 'IIT Bombay, Machine Intelligence Program',
+      'Most tremor wearables watch one signal, offline. ParkinSense streams a 6-axis IMU at 104 Hz and a PPG sensor over BLE into a runtime that detects rest tremor and measures its frequency and amplitude, estimates heart rate and HRV, counts steps, tags every output with a quality state, and records every raw sample so any session can be replayed bit-exactly.',
+    context: 'IIT Bombay, Machine Intelligence Program; continued independently',
     role: 'Conceived, pitched and built end to end',
-    period: 'June – July 2026',
-    technologies: ['nRF52840', 'BLE 5.0', 'C / C++', 'Python', 'Plotly Dash', 'Android'],
-    parameters: 'IMU 104 Hz · PPG ~50 Hz · 248-byte BLE packets, 10 samples each · ~7 mA active, measured',
+    period: 'June 2026 – present',
+    technologies: ['nRF52840', 'BLE', 'C / C++ (Arduino)', 'Python', 'SciPy', 'FastAPI', 'Plotly Dash', 'pytest'],
+    parameters: 'IMU 104 Hz · 208-byte BLE packets, 10 samples each · 4 s windows every 0.5 s · pipeline 3.0.0',
     keyFigures: [
-      { value: '104', unit: 'Hz', label: 'IMU sampling and BLE stream' },
-      { value: '248', unit: 'B', label: 'Versioned BLE packet, 10 samples' },
-      { value: '~7', unit: 'mA', label: 'Active current, measured' },
+      { value: '0.99', label: 'Tremor sensitivity, synthetic ground truth' },
+      { value: '0.024', unit: 'Hz', label: 'Median tremor-frequency error, synthetic' },
+      { value: '0.3', unit: '/min', label: 'False steps during rest tremor, from 23.3' },
     ],
     technicalDetails: [
-      'Gravity removal, 50 Hz notch, 4.0–7.5 Hz Butterworth band-pass',
-      'Multi-axis feature extraction with a hysteresis tremor state machine',
-      'PPG: SQI, adaptive peaks, RR intervals, HR, HRV, SpO₂',
-      'Step tracking gated by the motion pipeline’s activity classifier',
-      'Decoupled Plotly Dash dashboard with CSV / JSON logging',
+      'Welch PSD per gyro axis, 3.5–7.5 Hz peak with Gaussian interpolation',
+      'Evidence score + 2-state HMM forward filter for tremor state',
+      'PPG heart rate, HRV and motion-artefact flags; uncalibrated SpO₂',
+      'Step counter gated by motion context, with a tremor guard',
+      'Deterministic replay, provenance in every recording, CI test suite',
+    ],
+    contributions: [
+      'Proposed the project at IIT Bombay and built the hardware, firmware, BLE protocol, signal processing and dashboard',
+      'Re-engineered the pipeline to 3.0.0: package structure, HMM tremor filter, protocol v2, benchmarks against the old version, decision records',
+      'Wrote the test suite (unit, integration, golden regression on real recordings, synthetic performance floors) and CI',
     ],
     github: 'https://github.com/sudo-pranshu/ParkinSense',
     demo: null,
@@ -64,8 +71,46 @@ export const projects: Project[] = [
     accent: 'var(--accent)',
   },
   {
-    slug: 'tremosense',
+    slug: 'circuitvision',
     index: '02',
+    title: 'CircuitVision',
+    subtitle: 'Hand-drawn circuit photos to validated, simulatable SPICE netlists',
+    description:
+      'A computer-vision pipeline that reads a photo of a hand-drawn circuit, finds the components and the wires between them, and writes a SPICE netlist that ngspice can simulate.',
+    summary:
+      'A phone photo is binarised against the paper, a YOLOv8 detector finds the components, a HOG + SVM classifier reads their orientation, wire tracing rebuilds the nets, EasyOCR reads the values, and the result is checked by a grammar and simulated in ngspice. A second path turns an English description of a circuit into the same netlist.',
+    context: 'AI / ML minor project, VJTI · with Pawan Shinde',
+    role: 'Project owner; architecture, pipeline and evaluation',
+    period: 'September – November 2026',
+    technologies: ['Python', 'YOLOv8', 'OpenCV', 'scikit-learn', 'EasyOCR', 'ngspice', 'Gradio', 'pytest'],
+    parameters: '9 detector classes · CGHD v14, 2,981 training photos · test on an unseen drafter · 136 tests',
+    keyFigures: [
+      { value: '0.904', label: 'Detection mAP50 on an unseen drafter (real)' },
+      { value: '0.994', label: 'Exact wire topology, 11 photo conditions (synthetic)' },
+      { value: '0.90', label: 'Text → netlist exact circuits, held-out set' },
+    ],
+    technicalDetails: [
+      'Paper-relative binarisation for grid paper and shadows',
+      'YOLOv8s trained on the CGHD handwritten-circuit dataset',
+      'HOG + linear SVM orientation and polarity',
+      'Wire tracing with symbol masking, terminal rings and crossovers',
+      'EasyOCR values, CFG / Earley validation, ngspice operating point',
+    ],
+    contributions: [
+      'Owns the repository and architecture; wrote the core pipeline, evaluation design and project documentation',
+      'Reviewed the dataset rotation convention and label conversion (Gates 1 and 2) and audited the merged changes against the running training',
+      'Built with Pawan Shinde, who ran the dataset audit, gates, reference netlists, user testing and the final report',
+    ],
+    github: 'https://github.com/sudo-pranshu/CircuitVision',
+    demo: null,
+    images: [
+      { src: asset('assets/work/cv-u01-overlay.jpg'), alt: 'CircuitVision output on a hand-drawn circuit photo: detected components boxed and each wire net coloured' },
+    ],
+    accent: 'var(--accent)',
+  },
+  {
+    slug: 'tremosense',
+    index: '03',
     title: 'TremoSense',
     subtitle: 'Tremor-suppressing spoon on Zephyr RTOS, for people with Parkinson’s',
     description:
@@ -95,7 +140,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'navisight',
-    index: '03',
+    index: '04',
     title: 'NaviSight',
     subtitle: 'Two assistive devices for visually impaired navigation',
     description:
@@ -121,7 +166,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'rl-autonomous-car',
-    index: '04',
+    index: '05',
     title: 'RL Autonomous Car',
     shortTitle: 'RL Car',
     subtitle: 'Reinforcement-learning driving agent in a Pygame lane simulation',
@@ -147,7 +192,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'wall-e',
-    index: '05',
+    index: '06',
     title: 'Wall-E',
     subtitle: 'Self-balancing, line-following robot',
     description:
@@ -173,7 +218,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'traffic-management',
-    index: '06',
+    index: '07',
     title: 'Automated Traffic Management System',
     shortTitle: 'Traffic System',
     subtitle: 'Real-time vehicle detection and number-plate reading from a live camera',

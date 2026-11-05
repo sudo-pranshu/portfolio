@@ -48,7 +48,7 @@ export function SignalFigure({ compact = false, caption = true }: Props) {
           Raw accel.
         </span>
         <span className="label" style={{ top: `${(lanes[1] / H) * 100}%` }}>
-          4.0–7.5 Hz
+          3.5–7.5 Hz
         </span>
         <span className="label label--accent" style={{ top: `${(lanes[2] / H) * 100}%` }}>
           Tremor state
@@ -62,7 +62,7 @@ export function SignalFigure({ compact = false, caption = true }: Props) {
         viewBox={`0 0 ${W} ${H}`}
         className="sig__svg"
         role="img"
-        aria-label="Synthetic accelerometer signal with slow voluntary movement, mains noise and a 5.4 hertz tremor burst. After notch and 4 to 7.5 hertz band-pass filtering only the tremor remains, and a two-threshold detector marks the tremor interval."
+        aria-label="Synthetic accelerometer signal with slow voluntary movement, mains noise and a 5.4 hertz tremor burst. Viewed through the 3.5 to 7.5 hertz tremor band only the tremor remains, and a two-threshold detector marks the tremor interval."
         preserveAspectRatio="none"
       >
         {/* second ticks */}
@@ -101,10 +101,11 @@ export function SignalFigure({ compact = false, caption = true }: Props) {
       </div>
       {caption && (
         <figcaption className="sig__cap">
-          <span className="label label--fg">Fig. 02 · Motion pipeline, computed in your browser</span>
+          <span className="label label--fg">Fig. 02 · The tremor band, computed in your browser</span>
           <span className="muted">
-            Synthetic input: slow arm movement, 50 Hz pickup and a 5.4 Hz burst, sampled at 104 Hz. Filters are the
-            documented ones; detector thresholds (dashed) are illustrative.
+            Synthetic input: slow arm movement, 50 Hz pickup and a 5.4 Hz burst, sampled at 104 Hz, viewed through the
+            3.5–7.5 Hz tremor band. The pipeline itself scores the Welch spectrum of each 4 s window; thresholds
+            (dashed) are illustrative.
           </span>
         </figcaption>
       )}

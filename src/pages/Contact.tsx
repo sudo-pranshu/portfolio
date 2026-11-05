@@ -68,7 +68,7 @@ export default function Contact() {
                 <a href={personal.resume} className="sheet__item" target="_blank" rel="noopener" download="Pranshu-Kumar-Resume.pdf">
                   <span className="label">Résumé</span>
                   <span className="sheet__v">
-                    PDF, two pages <span className="sheet__go" aria-hidden="true">↓</span>
+                    PDF, one page <span className="sheet__go" aria-hidden="true">↓</span>
                   </span>
                 </a>
               </li>

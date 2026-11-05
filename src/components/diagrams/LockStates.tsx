@@ -1,6 +1,6 @@
 /** PPG signal-lock state machine. State names are from the resume; transition conditions are not published, so none are drawn. */
 export function LockStates() {
-  const states = ['SEARCHING', 'LOCKED', 'TRACKING']
+  const states = ['SEARCHING', 'LOCKED', 'TRACKING', 'LOST']
   return (
     <figure className="lock">
       <ol className="lock__row" aria-label="PPG lock states, in order">
@@ -11,7 +11,7 @@ export function LockStates() {
           </li>
         ))}
       </ol>
-      <figcaption className="label">Signal-lock sequence in the PPG pipeline</figcaption>
+      <figcaption className="label">Signal-lock states in the PPG pipeline; output is rate-limited and LOST waits before searching again</figcaption>
     </figure>
   )
 }

@@ -13,6 +13,7 @@ const loaders = {
   contact: () => import('./pages/Contact'),
   notFound: () => import('./pages/NotFound'),
   parkinsense: () => import('./pages/work/ParkinSense'),
+  circuitvision: () => import('./pages/work/CircuitVision'),
   tremosense: () => import('./pages/work/TremoSense'),
   navisight: () => import('./pages/work/NaviSight'),
   rlcar: () => import('./pages/work/RLCar'),
@@ -26,6 +27,7 @@ const Education = lazy(loaders.education)
 const Contact = lazy(loaders.contact)
 const NotFound = lazy(loaders.notFound)
 const ParkinSense = lazy(loaders.parkinsense)
+const CircuitVision = lazy(loaders.circuitvision)
 const TremoSense = lazy(loaders.tremosense)
 const NaviSight = lazy(loaders.navisight)
 const RLCar = lazy(loaders.rlcar)
@@ -76,6 +78,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/work" element={<Work />} />
             <Route path="/work/parkinsense" element={<ParkinSense />} />
+            <Route path="/work/circuitvision" element={<CircuitVision />} />
             <Route path="/work/tremosense" element={<TremoSense />} />
             <Route path="/work/navisight" element={<NaviSight />} />
             <Route path="/work/rl-autonomous-car" element={<RLCar />} />

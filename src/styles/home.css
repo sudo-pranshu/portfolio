@@ -830,3 +830,69 @@
   object-position: 50% 58%;
   border: 1px solid var(--border);
 }
+
+/* CircuitVision: second flagship */
+.cvf {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--col-gap);
+  margin-top: var(--section);
+  align-items: end;
+}
+.cvf__media {
+  grid-column: 1 / span 7;
+}
+.cvf__text {
+  grid-column: 8 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  align-items: flex-start;
+  border-top: 1px solid var(--foreground);
+  padding-top: var(--s-4);
+}
+.cvf__title {
+  font-size: clamp(3rem, 1.6rem + 4vw, 6rem);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  margin-left: -0.04em;
+  transition: color var(--dur-fast);
+}
+.cvf__text:hover .cvf__title,
+.cvf__text:hover .link {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.cvf__sub {
+  color: var(--muted);
+  max-width: 32ch;
+}
+.cvf__figs {
+  display: grid;
+  gap: var(--s-3);
+  width: 100%;
+  margin-block: var(--s-3);
+}
+.cvf__figs > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--s-4);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: var(--s-2);
+}
+.cvf__figs dd {
+  font-size: 1.6rem;
+}
+.cvf__figs dt {
+  max-width: 24ch;
+}
+@media (max-width: 1000px) {
+  .cvf__media,
+  .cvf__text {
+    grid-column: 1 / -1;
+  }
+  .cvf__text {
+    margin-top: var(--s-6);
+  }
+}
