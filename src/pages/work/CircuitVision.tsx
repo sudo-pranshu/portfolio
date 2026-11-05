@@ -107,7 +107,7 @@ export default function CircuitVision() {
 
       <CaseSection n="04" title="Results" kicker="Real, generated and hand-written, kept apart." wide id="results">
         <div className="tscroll">
-          <table className="dsheet">
+          <table className="dsheet dsheet--stack">
             <caption className="sr-only">CircuitVision results</caption>
             <thead>
               <tr>
@@ -126,8 +126,8 @@ export default function CircuitVision() {
               {results.map(([a, b, c]) => (
                 <tr key={a}>
                   <th scope="row">{a}</th>
-                  <td className="dsheet__v">{b}</td>
-                  <td className="muted">{c}</td>
+                  <td className="dsheet__v" data-label="Value">{b}</td>
+                  <td className="muted" data-label="Data">{c}</td>
                 </tr>
               ))}
             </tbody>

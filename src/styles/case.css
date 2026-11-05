@@ -1065,3 +1065,60 @@
   display: block;
   border: 1px solid var(--border);
 }
+
+/* Three-column result tables: stack each row as a small card on narrow screens so nothing overlaps. */
+@media (max-width: 720px) {
+  .tscroll {
+    overflow-x: visible;
+  }
+  .dsheet.dsheet--stack thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .dsheet.dsheet--stack,
+  .dsheet.dsheet--stack tbody {
+    display: block;
+  }
+  .dsheet.dsheet--stack tr {
+    display: block;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .dsheet.dsheet--stack tbody tr:hover {
+    background: none;
+  }
+  .dsheet.dsheet--stack th[scope='row'],
+  .dsheet.dsheet--stack td {
+    display: block;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+  }
+  .tscroll .dsheet.dsheet--stack th[scope='row'] {
+    min-width: 0;
+    margin-bottom: 0.4rem;
+  }
+  .dsheet.dsheet--stack td {
+    display: grid;
+    grid-template-columns: minmax(6.5rem, 38%) minmax(0, 1fr);
+    column-gap: var(--s-3);
+    align-items: baseline;
+    padding-block: 0.15rem;
+    overflow-wrap: anywhere;
+  }
+  .dsheet.dsheet--stack td::before {
+    content: attr(data-label);
+    font-family: var(--f-mono);
+    font-size: var(--t-label);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+  .dsheet.dsheet--stack .dsheet__v {
+    white-space: normal;
+  }
+}

@@ -244,7 +244,7 @@ export default function ParkinSense() {
           s per tremor scenario). These are engineering benchmarks, not clinical accuracy.
         </p>
         <div className="tscroll">
-          <table className="dsheet">
+          <table className="dsheet dsheet--stack">
             <caption className="sr-only">Benchmark results, baseline against current</caption>
             <thead>
               <tr>
@@ -263,8 +263,8 @@ export default function ParkinSense() {
               {results.map(([m, a, b]) => (
                 <tr key={m}>
                   <th scope="row">{m}</th>
-                  <td className="dsheet__v muted">{a}</td>
-                  <td className="dsheet__v">{b}</td>
+                  <td className="dsheet__v muted" data-label="Pipeline 2.2.0">{a}</td>
+                  <td className="dsheet__v" data-label="Pipeline 3.0.0">{b}</td>
                 </tr>
               ))}
             </tbody>
@@ -281,7 +281,7 @@ export default function ParkinSense() {
 
       <CaseSection n="09" title="Implemented and planned" kicker="What exists, and what doesn’t yet." wide id="status">
         <div className="tscroll">
-          <table className="dsheet">
+          <table className="dsheet dsheet--stack">
             <caption className="sr-only">Implementation status</caption>
             <thead>
               <tr>
@@ -300,8 +300,8 @@ export default function ParkinSense() {
               {status.map(([a, b, c]) => (
                 <tr key={a}>
                   <th scope="row">{a}</th>
-                  <td className={b === 'Working' ? '' : 'muted'}>{b}</td>
-                  <td className="muted">{c}</td>
+                  <td className={b === 'Working' ? '' : 'muted'} data-label="Status">{b}</td>
+                  <td className="muted" data-label="Evidence / blocker">{c}</td>
                 </tr>
               ))}
             </tbody>
