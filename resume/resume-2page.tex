@@ -1,91 +1,121 @@
-% Pranshu Kumar - resume (two-page). Build: xelatex resume.tex  (or: latexmk -xelatex resume.tex)
+% Pranshu Kumar - resume (two-page, detailed). Build: xelatex resume-2page.tex
 \documentclass[10pt,letterpaper]{article}
-\usepackage[letterpaper,top=0.6in,bottom=0.6in,left=0.65in,right=0.65in]{geometry}
+\usepackage[letterpaper,top=0.5in,bottom=0.5in,left=0.6in,right=0.6in]{geometry}
 \usepackage{fontspec}
 \IfFontExistsTF{Times New Roman}{\setmainfont{Times New Roman}}{\setmainfont{TeX Gyre Termes}}
-\usepackage{enumitem,titlesec,tabularx,xcolor}
+\usepackage{enumitem,titlesec,xcolor}
 \usepackage[hidelinks]{hyperref}
 \definecolor{linkblue}{RGB}{17,85,204}
 \newcommand{\lnk}[2]{\href{#1}{\textcolor{linkblue}{#2}}}
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{0pt}
-\linespread{1.08}
-\titleformat{\section}{\bfseries\normalsize\uppercase}{}{0pt}{}[\vspace{-0.75ex}\rule{\linewidth}{0.5pt}]
-\titlespacing*{\section}{0pt}{10pt}{5pt}
-\setlist[itemize]{leftmargin=0.85em,label={\scriptsize$\bullet$},labelsep=0.35em,itemsep=2pt,parsep=0pt,topsep=0.5pt,partopsep=0pt}
-\newcommand{\role}[2]{\par\vspace{2pt}\textbf{#1}\hfill\textbf{#2}\par}
-\newcommand{\proj}[2]{\par\vspace{2pt}\textbf{#1}\hfill{\small #2}\par}
+\linespread{1.0}
+\titleformat{\section}{\bfseries\normalsize\uppercase}{}{0pt}{}[\vspace{-0.6ex}\rule{\linewidth}{0.5pt}]
+\titlespacing*{\section}{0pt}{8pt}{3pt}
+\setlist[itemize]{leftmargin=1em,label={\small$\bullet$},labelsep=0.4em,itemsep=0.5pt,parsep=0pt,topsep=1pt}
+\newcommand{\role}[2]{\par\vspace{4pt}\textbf{#1}\hfill\textbf{#2}\par}
+\newcommand{\proj}[1]{\par\vspace{5pt}\textbf{#1}\par}
+\newcommand{\sub}[1]{\par\vspace{2pt}\textit{#1}\par}
 
 \begin{document}
 \begin{center}
-{\large\textbf{PRANSHU KUMAR}}\\[1pt]
+{\Large\textbf{PRANSHU KUMAR}}\\[2pt]
 Mumbai/UAE \,|\, +91-9167306770 / +971-522012130 \,|\, \lnk{mailto:pranshu251205@gmail.com}{pranshu251205@gmail.com} \,|\, \lnk{https://www.linkedin.com/in/notpranshu/}{LinkedIn} \,|\, \lnk{https://github.com/sudo-pranshu}{GitHub}
 \end{center}
-\vspace{-6pt}
+\vspace{-8pt}
 
 \section{Education}
 \textbf{Veermata Jijabai Technological Institute (VJTI), Mumbai}\hfill\textbf{June 2027}\\
-Bachelor of Technology in Electronics and Telecommunications; Minor in AI \& Machine Learning\hfill\textbf{9.17 CGPA}
+Bachelor of Technology in Electronics and Telecommunications\hfill\textbf{9.17 CGPA -- Present}\\
+Minor in Artificial Intelligence and Machine Learning
 
 \section{Technical Skills}
 \begin{itemize}
-\item \textbf{Programming:} C, C++, Python, SQL \quad \textbf{Embedded:} nRF52840, ESP32, Zephyr RTOS, ESP-IDF, Arduino IDE, BLE, I\textsuperscript{2}C
-\item \textbf{ML, Vision \& Data:} PyTorch, YOLOv8, OpenCV, EasyOCR, scikit-learn, NumPy, SciPy, Pandas, Excel
-\item \textbf{Tools \& OS:} MATLAB/Simulink, ngspice, AutoCAD, Git, pytest, FastAPI, Plotly Dash; Linux, Windows, macOS
+\item \textbf{Programming languages:} C, C++, Python, SQL
+\item \textbf{Embedded \& Dev Tools:} nRF52840, ESP32, Zephyr RTOS, ESP-IDF, Arduino IDE, BLE, Git, pytest
+\item \textbf{ML, Vision \& Data Analysis:} PyTorch, YOLOv8, OpenCV, EasyOCR, scikit-learn, NumPy, SciPy, Pandas, Excel
+\item \textbf{Simulation \& CAD:} MATLAB/Simulink, ngspice, AutoCAD
+\item \textbf{Operating Systems:} Linux, Windows, macOS
 \end{itemize}
 
 \section{Professional Experience}
 \role{IIT Bombay, Mumbai, India \,|\, \textit{IoT Research Intern -- Machine Intelligence Program}}{June 2026 -- July 2026}
 \begin{itemize}
-\item Independently conceived, pitched and built ParkinSense, a wearable continuous-monitoring platform for Parkinson's disease, from concept to a working end-to-end prototype (firmware, BLE protocol, real-time signal processing, dashboard).
-\item Extended the lab's nRF52840/BLE IMU work into three parallel pipelines (motion, PPG/cardiac, activity) on one synchronised 104\,Hz stream, replacing offline single-axis tremor analysis with real-time, multi-axis, motion-context-aware detection.
+\item Independently conceived, pitched and built ParkinSense, a wearable continuous-monitoring platform for Parkinson's disease, from concept to a working end-to-end prototype (firmware, BLE protocol, real-time signal processing, dashboard) during the internship.
+\item Extended the lab's existing nRF52840/BLE IMU expertise into a three-pipeline architecture (motion, PPG/cardiac and activity) fusing inertial and optical sensing on one synchronised 104\,Hz stream, moving beyond the single-modality tremor detection common in prior wearable PD research.
+\item Replaced offline, single-axis tremor analysis with real-time, multi-axis, motion-context-aware detection; replaced isolated activity tracking with a step counter cross-gated against tremor; and replaced single-channel monitoring with a motion-aware confidence model linking cardiac and activity readings back to tremor state.
 \end{itemize}
+
 \role{Scientechnic, Dubai, UAE \,|\, \textit{Project Engineering Intern -- Building Technologies Department}}{June 2025 -- July 2025}
 \begin{itemize}
-\item Implemented, tested and commissioned a KNX lighting control system at Amazon DXB30 Innovation Hub, Dubai Internet City: actuator configuration, addressing and line diagnostics on a central monitoring system.
-\item Assisted in professional AV system design (DSPs, matrix switchers, amplifiers, control processors, AV-over-IP) against venue acoustics, display sizing and lighting/BMS integration.
-\item Designed I/O schedules (AI, DI, AO, DO) and selected DDC controllers for BMS projects including Burj Binghatti Jacob \& Co. Residences and GEMS Founders School, sized from equipment schedules, load demand and spare margins.
+\item Implemented, tested and commissioned a KNX-based lighting control system at Amazon DXB30 Innovation Hub, Dubai Internet City, including actuator configuration, addressing and line diagnostics on a central monitoring system.
+\item Designed initial I/O schedules (AI, DI, AO, DO) and conducted DDC selection for several BMS projects (e.g. Burj Binghatti Jacob \& Co. Residences, GEMS Founders School), guided by equipment schedules, load demand, spare margins and peripheral device requirements.
+\item Assisted in professional AV system design tailored to client requirements (use case, venue acoustics, display sizing, lighting/BMS integration) across DSPs, matrix switchers, amplifiers, speakers and control processors.
+\item Evaluated AV-over-IP solutions for signal routing, network infrastructure and scalability in distributed AV environments.
 \end{itemize}
+
 \role{IIT Bombay, Mumbai, India \,|\, \textit{IoT Research Intern -- Machine Intelligence Program}}{Feb 2025 -- May 2025}
 \begin{itemize}
-\item Acquired high-rate IMU data on nRF52840 Sense and ESP32 and optimised BLE transfer for IoT sensor networks.
-\item Diagnosed EMI-driven failures on a waterproof-cable serial link for a V-Guard submerged-pump project and contributed to the move to UDP wireless transmission, improving reliability and throughput under interference; validated real-time data retrieval.
+\item Conducted research on IoT sensor networks and real-time data transmission, acquiring high-speed IMU data on nRF52840 Sense and ESP32 and optimising BLE communication for efficient transfer.
+\item Collaborated on an industrial project with V-Guard collecting MPU data from underwater submerged pumps; investigated frequent EMI-related disruptions in the existing serial link over a waterproof cable.
+\item Contributed to transitioning the system from serial to UDP-based wireless transmission, improving data reliability and throughput under interference, and supported testing to ensure consistent real-time data retrieval in operation.
 \end{itemize}
 
 \section{Academic Projects}
-\proj{\lnk{https://github.com/sudo-pranshu/ParkinSense}{ParkinSense} -- Wearable IMU + PPG Platform for Parkinson's Tremor Monitoring}{nRF52840, BLE, Python, SciPy, Dash}
+\proj{\lnk{https://github.com/sudo-pranshu/ParkinSense}{ParkinSense} -- Continuous Multi-Modal Wearable Platform for Parkinson's Monitoring \normalfont(nRF52840, BLE, Signal Processing, Python)}
 \begin{itemize}
-\item Built a wrist wearable (XIAO nRF52840 Sense, LSM6DS3 IMU at 104\,Hz, MAX30102 PPG) streaming versioned 208-byte BLE packets of 10 samples with sequence numbers, gap detection and measured device rate; designed BLE protocol v2.
-\item Engineered tremor analytics: Welch PSD on 4\,s windows, 3.5--7.5\,Hz peak interpolation, SNR and harmonic rejection, and a 2-state HMM; raised sensitivity from 0.69 to 0.99 at 1.00 specificity with 0.024\,Hz median frequency error (synthetic ground truth).
-\item Developed PPG heart rate and HRV (RMSSD, SDNN, pNN50) with SEARCHING/LOCKED/TRACKING/LOST lock states and motion-artefact flags; HR MAE at rest 0.37\,BPM and RMSSD MAE 6.7\,ms on synthetic ground truth.
-\item Built a motion-gated, tremor-guarded step counter that cut false steps during rest tremor from 23.3 to 0.3/min (synthetic); 69 steps against $\approx$86 expected on a real walking recording.
-\item Delivered a FastAPI + Dash runtime with bit-exact replay, per-recording provenance (79-column capture) and an 84-test CI suite with golden regression on real recordings.
-\item Firmware v4 verified on hardware; v5 (protocol v2, $\sim$100\,Hz PPG) written and host-tested.
+\item Architected a complete end-to-end wearable system (custom firmware, BLE protocol, three parallel real-time signal-processing pipelines, live dashboard) for continuous Parkinson's monitoring, addressing the gap left by single-modality tremor wearables that ignore cardiac and activity context.
+\item Built a 104\,Hz sensor-fusion stream on a Seeed XIAO nRF52840 Sense with LSM6DS3 IMU and MAX30102 PPG, sending versioned 208-byte binary BLE packets (10 samples each) with sequence numbers, gap detection and measured device rate; designed BLE protocol v2 for $\sim$100\,Hz PPG.
+\item Designed the tremor pipeline: Welch PSD on 4\,s windows every 0.5\,s, 3.5--7.5\,Hz peak search with interpolation, SNR and harmonic rejection, REST/LOW MOTION/ACTIVE motion context and a 2-state HMM; raised sensitivity from 0.69 to 0.99 at 1.00 specificity with 0.024\,Hz median frequency error (synthetic ground truth).
+\item Developed a PPG pipeline from scratch (finger detection, signal-quality index, adaptive peak detection, RR intervals) producing heart rate, HRV (RMSSD, SDNN, pNN50) and an uncalibrated SpO\textsubscript{2} estimate, with SEARCHING/LOCKED/TRACKING/LOST lock states; HR MAE at rest 0.37\,BPM (synthetic).
+\item Engineered an accelerometer step counter gated by motion context and a tremor guard, cutting false steps during rest tremor from 23.3 to 0.3/min (synthetic); counted 69 steps against $\approx$86 expected on a real walking recording.
+\item Built a FastAPI + Plotly Dash runtime with bit-exact replay, per-recording provenance (79-column capture) and an 84-test CI suite with golden regression on real recordings, enabling offline analysis and future ML dataset generation.
 \end{itemize}
-\proj{\lnk{https://github.com/sudo-pranshu/CircuitVision}{CircuitVision} -- Hand-Drawn Circuit to SPICE Netlist (team of 2, AI/ML minor)}{YOLOv8, OpenCV, EasyOCR, ngspice}
+
+\proj{\lnk{https://github.com/sudo-pranshu/CircuitVision}{CircuitVision} -- Hand-Drawn Circuit to SPICE Netlist \normalfont(AI/ML minor, team of 2; YOLOv8, OpenCV, EasyOCR, ngspice)}
 \begin{itemize}
-\item Trained YOLOv8s on the CGHD handwritten-circuit dataset (2,981 photos, 9 classes), reaching 0.904 mAP50 and 0.611 mAP50-95 on an unseen drafter.
-\item Built paper-relative binarisation, HOG + SVM orientation and polarity classification, and wire tracing with symbol masking and crossovers (0.994 exact topology across 11 synthetic photo conditions).
-\item Generated SPICE netlists from EasyOCR-read values, validated by a CFG/Earley parser and simulated in ngspice; added an HMM (Viterbi) text-to-netlist path scoring 0.90 exact on held-out sentences; 136 automated tests.
-\item Measured honestly on real photos: correct circuit on 37.5\% of 48 analog photos with ground-truth boxes and 10.4\% with detector boxes; OCR on real handwriting remains the main bottleneck.
+\item Built an end-to-end pipeline that turns a photo of a hand-drawn circuit into a simulated SPICE netlist: binarisation, symbol detection, orientation, wire tracing, value reading, netlist generation, grammar validation and ngspice simulation.
+\item Trained YOLOv8s on the CGHD handwritten-circuit dataset (2,981 training photos, 9 classes), reaching 0.904 mAP50 and 0.611 mAP50-95 on a held-out drafter.
+\item Implemented paper-relative binarisation, HOG + SVM orientation and polarity classification, and wire tracing with symbol masking and crossover handling (0.994 exact topology across 11 synthetic photo conditions).
+\item Generated netlists from EasyOCR-read values, validated by a CFG/Earley parser before simulation; added an HMM (Viterbi) text-to-netlist path scoring 0.90 exact on held-out sentences; delivered a Gradio app and 136 automated tests.
+\item Measured honestly on real photos: 37.5\% of 48 analog circuits fully correct with ground-truth boxes, 10.4\% with detector boxes; identified handwritten-value OCR as the main bottleneck.
 \end{itemize}
-\proj{\lnk{https://github.com/rkt-1597/TremoSense-Project}{TremoSense} -- Tremor-Suppressing Spoon on Zephyr RTOS (team of 3)}{Zephyr, C, EKF, LQR, Simulink}
+
+\proj{\lnk{https://github.com/rkt-1597/TremoSense-Project}{TremoSense} -- Anti-Tremor Assistive Spoon for Parkinson's Patients \normalfont(Zephyr RTOS, C, EKF, LQR, Simulink)}
 \begin{itemize}
-\item Built a two-axis servo gimbal (MG995 roll, FS90MG pitch) on the XIAO nRF52840 Sense: 208\,Hz IMU, 2-state EKF roll/pitch estimation and a 2$\times$4 LQR gain, with servo commands every 10\,ms through Zephyr threads, a message queue and a semaphore.
+\item Engineered a 2-axis active stabilisation system that suppresses pathological hand tremor while preserving intentional motion, improving usability for Parkinson's patients during eating.
+\item Integrated the LSM6DS3 6-DoF IMU on a XIAO nRF52840 Sense (ARM Cortex-M4F) sampling at 208\,Hz, driving an MG995 roll and FS90MG pitch servo with commands every 10\,ms through Zephyr threads, a message queue and a semaphore.
+\item Designed a 2-state Extended Kalman Filter for roll/pitch estimation, removing gyroscope drift and high-frequency noise, and a 2$\times$4 LQR gain for coordinated two-axis stabilisation with lower control effort than PID.
 \item Validated the EKF--LQR design in MATLAB/Simulink at 1000\,Hz: over 90\% roll and 80\% pitch suppression across most of the 3--7\,Hz tremor band; residual RMS 0.346$^\circ$/0.573$^\circ$ under 8$^\circ$, 8\,Hz tremor.
 \end{itemize}
-\proj{NaviSight -- Assistive Navigation for the Visually Impaired}{Arduino, ESP32-CAM, TensorFlow Lite}
+
+\proj{NaviSight -- Assistive Navigation for the Visually Impaired \normalfont(Arduino, ESP32-CAM, TensorFlow Lite)}
 \begin{itemize}
-\item Built an ultrasonic smart cane with haptic and buzzer alerts and GPS (L80-M39) + HC-05 location sharing by SMS, and deployed offline TensorFlow Lite object recognition on an ESP32-CAM.
+\item Developed a dual-component assistive system: a smart cane with obstacle detection and an ESP32-CAM vision module with real-time object recognition, for independent navigation, object awareness and personal safety.
 \end{itemize}
-\proj{Wall-E -- Self-Balancing, Line-Following Robot (SRA team)}{ESP32, ESP-IDF, PID}
+\sub{1. Echo-Stride -- Smart Cane}
 \begin{itemize}
-\item Implemented PID line following from a Light Sensor Array and PID self-balancing on an ESP32 with the in-house SRA Board; tuned gains through iterative testing.
+\item Engineered a smart cane with ultrasonic sensors on an Arduino Uno for obstacle detection, with haptic (vibration motor) and buzzer alerts and an ergonomic, durable casing for daily use.
+\item Added GPS (L80-M39) and Bluetooth (HC-05) to send the user's location to their phone, and configured Tasker automation to share the live Google Maps location with trusted contacts by SMS at set intervals.
+\end{itemize}
+\sub{2. EyeCue -- ESP32-CAM Smart Vision Module}
+\begin{itemize}
+\item Trained and deployed lightweight TensorFlow Lite models on the ESP32-CAM for offline, low-power object/person recognition, with on-device preprocessing and inference.
+\item Integrating text-to-speech audio feedback and optimising form factor and power for daily outdoor use.
+\end{itemize}
+
+\proj{Wall-E -- Self-Balancing, Line-Following Robot \normalfont(ESP32, ESP-IDF, Git; SRA)}
+\begin{itemize}
+\item Co-designed a two-wheeled self-balancing, line-following robot on an ESP32 with the SRA's in-house SRA Board.
+\item Integrated a Light Sensor Array to detect white or black lines from reflectivity differences, and implemented PID control for line tracking and for balancing from positional feedback.
+\item Tuned PID gains through iterative testing to achieve reliable line-following and self-balancing across test scenarios.
 \end{itemize}
 
 \section{Achievements \& Extra-Curricular Activities}
 \begin{itemize}
-\item Academic Branch Topper (First Year) \,$\cdot$\, Organising team, Technovanza 2024 (4,000--5,000 participants) \,$\cdot$\, Member, Society of Robotics and Automation, VJTI \,$\cdot$\, Guitarist at college cultural programmes
+\item Academic Branch Topper (First Year).
+\item Organising team, Technovanza 2024, Asia's second-largest tech fest (4,000--5,000 participants).
+\item Member, Society of Robotics and Automation (SRA), VJTI; active in workshops.
+\item Guitarist at college events and cultural programmes.
 \end{itemize}
 \end{document}
