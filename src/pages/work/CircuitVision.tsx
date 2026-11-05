@@ -138,13 +138,6 @@ export default function CircuitVision() {
           and the best epoch, 43, is the one evaluated. The main downstream failure is battery terminals during wire
           tracing, then OCR on handwriting. Half the test photos are logic-gate diagrams with nothing to reconstruct.
         </p>
-        <Photo
-          src="assets/work/cv-user-photos"
-          width={1400}
-          height={858}
-          alt="Two real user photos with CircuitVision overlays: a circuit on plain paper with its topology recovered, and one on ruled notebook paper where ruling lines are traced as wires"
-          caption="User testing: on plain paper the topology is recovered; on ruled paper the lines are traced as wires"
-        />
       </CaseSection>
 
       <CaseSection n="05" title="Limits and next steps" kicker="Stated in the repo, repeated here." wide id="next">
