@@ -9,6 +9,8 @@ import './styles/home.css'
 import './styles/pages.css'
 import './styles/case.css'
 import './styles/diagrams.css'
+import './styles/lab.css'
+import './styles/recruiter.css'
 import App from './App'
 import { ErrorBoundary } from './components/ErrorBoundary'
 

@@ -1,8 +1,10 @@
 import { lazy, Suspense, useEffect, type ComponentType } from 'react'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { AnimatePresence, LazyMotion, MotionConfig, domAnimation, m } from 'motion/react'
 import { Nav } from './components/Nav'
 import { Footer } from './components/Footer'
+import { RecruiterBar } from './components/RecruiterBar'
+import { useRecruiter } from './hooks/useRecruiter'
 import Home from './pages/Home'
 
 /** A deploy can leave an open tab pointing at files that no longer exist. Reload once to pick up the new build. */
@@ -44,6 +46,8 @@ const loaders = {
   education: () => import('./pages/Education'),
   contact: () => import('./pages/Contact'),
   resume: () => import('./pages/Resume'),
+  lab: () => import('./pages/Lab'),
+  recruiter: () => import('./pages/Recruiter'),
   notFound: () => import('./pages/NotFound'),
   parkinsense: () => import('./pages/work/ParkinSense'),
   circuitvision: () => import('./pages/work/CircuitVision'),
@@ -59,6 +63,8 @@ const Experience = lazy(retry(loaders.experience))
 const Education = lazy(retry(loaders.education))
 const Contact = lazy(retry(loaders.contact))
 const Resume = lazy(retry(loaders.resume))
+const Lab = lazy(retry(loaders.lab))
+const Recruiter = lazy(retry(loaders.recruiter))
 const NotFound = lazy(retry(loaders.notFound))
 const ParkinSense = lazy(retry(loaders.parkinsense))
 const CircuitVision = lazy(retry(loaders.circuitvision))
@@ -80,6 +86,7 @@ function usePrefetchRoutes() {
 
 export default function App() {
   const location = useLocation()
+  const recruiter = useRecruiter()
   usePrefetchRoutes()
 
   return (
@@ -105,11 +112,12 @@ export default function App() {
       />
 
       <Nav />
+      <RecruiterBar />
 
       <Suspense fallback={<main id="main" className="page-fallback" />}>
         <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
           <Routes location={location} key={location.pathname}>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={recruiter ? <Navigate to="/recruiter" replace /> : <Home />} />
             <Route path="/work" element={<Work />} />
             <Route path="/work/parkinsense" element={<ParkinSense />} />
             <Route path="/work/circuitvision" element={<CircuitVision />} />
@@ -123,6 +131,8 @@ export default function App() {
             <Route path="/education" element={<Education />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/resume" element={<Resume />} />
+            <Route path="/lab" element={<Lab />} />
+            <Route path="/recruiter" element={<Recruiter />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AnimatePresence>

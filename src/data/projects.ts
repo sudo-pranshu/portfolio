@@ -85,9 +85,9 @@ export const projects: Project[] = [
     technologies: ['Zephyr RTOS', 'C', 'XIAO nRF52840 Sense', 'EKF', 'LQR', 'MG995 + FS90MG servos', 'MATLAB / Simulink'],
     parameters: '2 axes, roll + pitch · IMU at 208 Hz · servo update every 10 ms · Simulink validation at 1000 Hz',
     keyFigures: [
-      { value: '>90', unit: '%', label: 'Roll suppression across most of 3–7 Hz (simulated)' },
-      { value: '>80', unit: '%', label: 'Pitch suppression across most of 3–7 Hz (simulated)' },
-      { value: '0.346', unit: '°', label: 'Residual roll RMS, 8° / 8 Hz input (simulated)' },
+      { value: '>90', unit: '%', label: 'Roll suppression across most of 3–7 Hz (Simulink)' },
+      { value: '>80', unit: '%', label: 'Pitch suppression across most of 3–7 Hz (Simulink)' },
+      { value: '0.346', unit: '°', label: 'Residual roll RMS, 8° / 8 Hz input (Simulink)' },
     ],
     technicalDetails: [
       '2-state EKF (roll, pitch): gyro prediction, accelerometer correction',

@@ -148,7 +148,7 @@ export const signalChain = [
   { stage: 'Sensing', eg: 'LSM6DS3 IMU, MAX30102 PPG, ultrasonic, cameras' },
   { stage: 'Electronics', eg: 'Servo PWM drive, SRA board, KNX and BMS I/O' },
   { stage: 'Firmware', eg: 'Zephyr RTOS, nRF52840, ESP32, ESP-IDF' },
-  { stage: 'Communication', eg: '248-byte BLE packets, UDP, Bluetooth, GPS' },
+  { stage: 'Communication', eg: '208-byte BLE packets, UDP, Bluetooth, GPS' },
   { stage: 'Processing', eg: 'Notch and band-pass filters, EKF, SQI, peak detection' },
   { stage: 'Intelligence', eg: 'State machines, TensorFlow Lite, YOLOv8, Q-learning' },
   { stage: 'Decision', eg: 'LQR, PID, tremor state, haptic alerts' },

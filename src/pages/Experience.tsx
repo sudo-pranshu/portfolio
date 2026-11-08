@@ -21,7 +21,7 @@ export default function Experience() {
       path="/experience"
     >
       <section className="wrap page-head">
-        <span className="label label--accent">03 · Experience</span>
+        <span className="label label--accent">04 · Experience</span>
         <h1 className="page-head__title display">Three placements</h1>
         <p className="page-head__lede serif">
           Two research internships at IIT Bombay, either side of a summer commissioning building systems in Dubai.

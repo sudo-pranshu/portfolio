@@ -6,6 +6,8 @@ import { getProject } from '../data/projects'
 function sheetName(path: string) {
   if (path === '/') return 'Index'
   if (path === '/resume') return 'Résumé'
+  if (path === '/recruiter') return 'Recruiter overview'
+  if (path === '/lab') return 'Engineering Lab'
   const p = path.match(/^\/work\/(.+)$/)
   if (p) return getProject(p[1])?.title ?? 'Not found'
   return navItems.find((n) => n.to === path)?.label ?? 'Not found'

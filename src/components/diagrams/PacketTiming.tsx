@@ -1,5 +1,5 @@
 /**
- * Sample-to-packet timing. 104 Hz, 10 samples per 248-byte packet (documented);
+ * Sample-to-packet timing. 104 Hz, 10 samples per 208-byte packet (documented);
  * the millisecond figures are arithmetic from those two numbers.
  */
 export function PacketTiming() {
@@ -27,7 +27,7 @@ export function PacketTiming() {
             <g key={p}>
               <path d={`M${x0} 64 V74 H${x1} V64`} className="pkt__bracket" />
               <text x={(x0 + x1) / 2} y={98} textAnchor="middle" className="pkt__text">
-                PACKET {p + 1} · 248 B
+                PACKET {p + 1} · 208 B
               </text>
             </g>
           )

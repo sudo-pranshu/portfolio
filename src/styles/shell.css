@@ -151,7 +151,7 @@
   text-align: right;
 }
 
-@media (max-width: 1020px) {
+@media (max-width: 1230px) {
   .nav__links,
   .nav__theme {
     display: none;

@@ -1,16 +1,29 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { AnimatePresence, m, useReducedMotion } from 'motion/react'
 import { personal } from '../config/personal'
 import { useTheme } from '../hooks/useTheme'
 import { easeOut } from '../animations/motion'
 import { navItems } from '../config/nav'
+import { setRecruiter, useRecruiter } from '../hooks/useRecruiter'
 
 
 export function Nav() {
   const reduce = useReducedMotion()
   const { theme, toggle } = useTheme()
   const { pathname } = useLocation()
+  const navigate = useNavigate()
+  const recruiter = useRecruiter()
+  const home = recruiter ? '/recruiter' : '/'
+  const toggleMode = () => {
+    if (recruiter) {
+      setRecruiter(false)
+      if (pathname === '/recruiter') navigate('/')
+    } else {
+      setRecruiter(true)
+      navigate('/recruiter')
+    }
+  }
   // The menu belongs to the page it was opened on, so any navigation closes it.
   const [openAt, setOpenAt] = useState<string | null>(null)
   const open = openAt === pathname
@@ -51,7 +64,7 @@ export function Nav() {
   return (
     <header className="nav">
       <div className="wrap nav__bar">
-        <Link to="/" className="nav__mark" aria-label="Pranshu Kumar, home">
+        <Link to={home} className="nav__mark" aria-label="Pranshu Kumar, home">
           <span className="nav__sq" aria-hidden="true" />
           <span>Pranshu Kumar</span>
         </Link>
@@ -66,6 +79,16 @@ export function Nav() {
         </nav>
 
         <div className="nav__util">
+          <button
+            type="button"
+            className="nav__mode"
+            aria-pressed={recruiter}
+            onClick={toggleMode}
+            title={recruiter ? 'Leave the recruiter overview' : 'Switch to the short recruiter overview'}
+          >
+            <span className="nav__modeicon" aria-hidden="true" />
+            Recruiter
+          </button>
           <button
             type="button"
             className="nav__theme"
@@ -107,8 +130,9 @@ export function Nav() {
             <div className="wrap menu__inner">
               <ul className="menu__list">
                 <li>
-                  <NavLink to="/" end className="menu__link">
-                    <span className="label">00</span>Home
+                  <NavLink to={home} end className="menu__link">
+                    <span className="label">00</span>
+                    {recruiter ? 'Overview' : 'Home'}
                   </NavLink>
                 </li>
                 {navItems.map((it, i) => (
@@ -134,6 +158,9 @@ export function Nav() {
                   </NavLink>
                   <button type="button" className="link" onClick={toggle}>
                     {theme === 'dark' ? 'Light theme' : 'Dark theme'}
+                  </button>
+                  <button type="button" className="link" onClick={toggleMode} aria-pressed={recruiter}>
+                    {recruiter ? 'Exit recruiter mode' : 'Recruiter mode'}
                   </button>
                 </div>
               </div>

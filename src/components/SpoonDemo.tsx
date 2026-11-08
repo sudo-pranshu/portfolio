@@ -90,7 +90,7 @@ export function SpoonDemo() {
         </button>
       </div>
 
-      <svg viewBox="0 0 300 300" className="spoon__stage" role="img" aria-label="Animated illustration: a spoon whose handle shakes while its head stays steady when stabilisation is on">
+      <svg viewBox="0 0 300 300" className="spoon__stage" role="img" aria-label="Animated spoon: the handle whose handle shakes while its head stays steady when stabilisation is on">
         <defs>
           <radialGradient id={`${uid}halo`}>
             <stop offset="0" stopColor={halo} stopOpacity="0.2" />
@@ -145,8 +145,7 @@ export function SpoonDemo() {
         ))}
       </div>
       <p className="spoon__note">
-        Illustration at half speed, scaled to roughly 90% suppression (the Simulink roll figure). Not a recording, and not a
-        hardware measurement.
+        Generated motion · roughly 90% suppression, the Simulink roll figure.
       </p>
     </div>
   )

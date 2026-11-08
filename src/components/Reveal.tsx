@@ -1,12 +1,15 @@
 import type { ReactNode } from 'react'
 import { m, useReducedMotion } from 'motion/react'
 import { easeOut } from '../animations/motion'
+import { useRecruiter } from '../hooks/useRecruiter'
 
 type Props = { children: ReactNode; delay?: number; className?: string; as?: 'div' | 'section' | 'li' }
 
 /** One restrained scroll reveal used everywhere, so motion stays consistent. */
 export function Reveal({ children, delay = 0, className, as = 'div' }: Props) {
-  const reduce = useReducedMotion()
+  const system = useReducedMotion()
+  const recruiter = useRecruiter()
+  const reduce = system || recruiter
   const C = m[as]
   return (
     <C

@@ -12,7 +12,7 @@ export default function Education() {
       path="/education"
     >
       <section className="wrap page-head edu-head">
-        <span className="label label--accent">04 · Education</span>
+        <span className="label label--accent">05 · Education</span>
         <h1 className="page-head__title display">VJTI, Mumbai</h1>
         <div className="edu-head__grid">
           <dl className="edu-facts">

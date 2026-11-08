@@ -162,13 +162,13 @@ export default function Home() {
             domain="Control · Estimation · Embedded"
             chain="IMU 208 Hz → EKF roll, pitch → LQR → two servos every 10 ms"
             ratio={1.7}
-            caption="Bench test, and simulated roll and pitch response"
+            caption="Bench test, and Simulink roll and pitch response"
             media={
               <div className="fl__split">
                 <DemoVideo bare />
                 <img
                   src={asset('assets/work/tremosense-roll-sim.webp')}
-                  alt="Simulated roll-axis frequency response of the TremoSense controller from 0 to 8 hertz"
+                  alt="Simulink roll-axis frequency response of the TremoSense controller from 0 to 8 hertz"
                   width={1200}
                   height={641}
                   loading="lazy"
@@ -176,7 +176,7 @@ export default function Home() {
                 />
                 <img
                   src={asset('assets/work/tremosense-pitch-sim.webp')}
-                  alt="Simulated pitch-axis frequency response of the TremoSense controller from 0 to 8 hertz"
+                  alt="Simulink pitch-axis frequency response of the TremoSense controller from 0 to 8 hertz"
                   width={1200}
                   height={639}
                   loading="lazy"

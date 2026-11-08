@@ -83,7 +83,7 @@ export function WristDemo() {
           </button>
         ))}
       </div>
-      <svg viewBox="0 0 260 70" preserveAspectRatio="none" className="wrist__plot" role="img" aria-label="Animated, simulated wrist motion signal" data-mode={mode}>
+      <svg viewBox="0 0 260 70" preserveAspectRatio="none" className="wrist__plot" role="img" aria-label="Animated wrist motion signal" data-mode={mode}>
         <line x1="0" x2="260" y1="35" y2="35" style={{ stroke: 'var(--border-strong)' }} />
         <path ref={line} fill="none" strokeWidth="2" vectorEffect="non-scaling-stroke" strokeLinejoin="round" className="wrist__line" />
       </svg>
@@ -117,8 +117,7 @@ export function WristDemo() {
         </div>
       </dl>
       <p className="wrist__note">
-        Illustration (tremor at half speed), values from the bench dashboard. Not a recording. The signal is simulated in your
-        browser: it is not patient data, not a clinical result, and not connected to a device.
+        Generated signal · values as the bench dashboard shows them.
       </p>
     </div>
   )

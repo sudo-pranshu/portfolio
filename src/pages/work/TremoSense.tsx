@@ -194,13 +194,13 @@ export default function TremoSense() {
             <figure className="ts-plot">
               <img
                 src={asset('assets/work/tremosense-ekf-sim.webp')}
-                alt="Simulink scope: simulated 8 degree, 8 hertz roll and pitch tremor input and the EKF estimate over two seconds, tracking closely."
+                alt="Simulink scope: 8 degree, 8 hertz roll and pitch tremor input and the EKF estimate over two seconds, tracking closely."
                 width={1400}
                 height={733}
                 loading="lazy"
                 decoding="async"
               />
-              <figcaption className="label">Fig. 04 · Simulated 8° at 8 Hz input against the EKF estimate, roll and pitch (Simulink scope)</figcaption>
+              <figcaption className="label">Fig. 04 · 8° at 8 Hz input against the EKF estimate, roll and pitch (Simulink scope)</figcaption>
             </figure>
             <figure className="ts-plot">
               <img
@@ -211,7 +211,7 @@ export default function TremoSense() {
                 loading="lazy"
                 decoding="async"
               />
-              <figcaption className="label">Fig. 05 · LQR counter-motion against input; residual RMS 0.346° roll, 0.573° pitch (simulated)</figcaption>
+              <figcaption className="label">Fig. 05 · LQR counter-motion against input; residual RMS 0.346° roll, 0.573° pitch (Simulink)</figcaption>
             </figure>
           </div>
 

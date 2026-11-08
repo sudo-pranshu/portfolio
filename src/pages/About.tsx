@@ -15,7 +15,7 @@ export default function About() {
     >
       <section className="wrap page-head about-head">
         <div className="about-head__text">
-          <span className="label label--accent">02 · About</span>
+          <span className="label label--accent">03 · About</span>
           <h1 className="page-head__title display">Sensor to decision</h1>
           <div className="about-head__prose">
             <p className="serif about-head__lede">
