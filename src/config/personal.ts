@@ -14,8 +14,8 @@ export const personal = {
   location: 'Mumbai / Dubai',
   email: 'pranshu.innovate@gmail.com',
   phones: [
-    { label: 'India', display: '+91 91673 06770', href: 'tel:+919167306770' },
-    { label: 'UAE', display: '+971 52 201 2130', href: 'tel:+971522012130' },
+    { id: 'in', label: 'India', display: '+91 91673 06770', e164: '+919167306770', digits: '919167306770', href: 'tel:+919167306770' },
+    { id: 'ae', label: 'UAE', display: '+971 52 201 2130', e164: '+971522012130', digits: '971522012130', href: 'tel:+971522012130' },
   ],
   linkedin: 'https://www.linkedin.com/in/notpranshu/',
   github: 'https://github.com/sudo-pranshu',
@@ -36,3 +36,12 @@ export const socials = [
   { label: 'GitHub', handle: 'sudo-pranshu', href: personal.github },
   { label: 'Instagram', handle: 'prvnshu', href: personal.instagram },
 ] as const
+
+/** Direct-contact URLs per number. WhatsApp's prefilled text is a draft; the visitor still taps send. */
+const waText = 'Hi Pranshu, I came across your portfolio and wanted to connect!'
+export const contactLinks = {
+  call: (p: { e164: string }) => `tel:${p.e164}`,
+  whatsapp: (p: { digits: string }) => `https://wa.me/${p.digits}?text=${encodeURIComponent(waText)}`,
+  sms: (p: { e164: string }) => `sms:${p.e164}`,
+  email: `mailto:${personal.email}`,
+} as const

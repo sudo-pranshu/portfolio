@@ -1,52 +1,136 @@
 import { Page } from '../components/Page'
 import { CopyEmail } from '../components/CopyEmail'
 import { Link } from 'react-router-dom'
-import { personal, socials } from '../config/personal'
+import { contactLinks, personal, socials } from '../config/personal'
+import { IndiaFlag, MailIcon, MessageIcon, PhoneIcon, UaeFlag, WhatsAppIcon } from '../components/ContactIcons'
+
+const flags = { in: IndiaFlag, ae: UaeFlag } as const
+
+/** Call, WhatsApp and Messages each offer both numbers; every option is its own link. */
+const quick = [
+  {
+    id: 'call',
+    name: 'Call me',
+    text: 'Let’s have a conversation.',
+    Icon: PhoneIcon,
+    external: false,
+    href: contactLinks.call,
+    label: (c: string, n: string) => `Call me on my ${c} number, dial ${n}`,
+  },
+  {
+    id: 'whatsapp',
+    name: 'WhatsApp',
+    text: 'Quick messages, whenever convenient.',
+    Icon: WhatsAppIcon,
+    external: true,
+    href: contactLinks.whatsapp,
+    label: (c: string, n: string) => `WhatsApp my ${c} number ${n}, opens in a new tab`,
+  },
+  {
+    id: 'sms',
+    name: 'Messages',
+    text: 'Send me a text.',
+    Icon: MessageIcon,
+    external: false,
+    href: contactLinks.sms,
+    label: (c: string, n: string) => `Text my ${c} number ${n}`,
+  },
+] as const
 
 export default function Contact() {
   return (
     <Page
       title="Contact | Pranshu Kumar"
-      description="Contact Pranshu Kumar: email, phone in India and the UAE, LinkedIn, GitHub, and résumé."
+      description="Contact Pranshu Kumar directly: call, WhatsApp, text message or email. Also LinkedIn, GitHub and résumé."
       path="/contact"
     >
       <section className="wrap page-head contact-head">
         <span className="label label--accent">05 · Contact</span>
         <h1 className="page-head__title display">Get in touch</h1>
         <p className="page-head__lede serif">
-          Open to engineering, research and consulting opportunities in hardware, semiconductors, embedded systems,
-          signal processing and AI.
+          Choose whichever way is easiest for you: a call, a quick message, or an email.
         </p>
       </section>
 
       <section className="wrap contact" aria-label="Contact details">
-        <div className="contact__mail">
-          <span className="label">Email, the fastest route</span>
-          <a href={`mailto:${personal.email}`} className="contact__addr">
-            {personal.email}
-          </a>
-          <div className="contact__actions">
-            <CopyEmail />
-            <a className="link" href={`mailto:${personal.email}`}>
-              Open in mail app <span className="arrow">↗</span>
-            </a>
-          </div>
+        <div className="reach reach--quick">
+          <h2 className="reach__h label">Quick &amp; personal</h2>
+          <ul className="reach__list">
+            {quick.map(({ id, name, text, Icon, external, href, label }) => (
+              <li key={id} className="cgroup" aria-labelledby={`cg-${id}`}>
+                <div className="cgroup__head">
+                  <span className="crow__icon">
+                    <Icon />
+                  </span>
+                  <span className="crow__body">
+                    <span id={`cg-${id}`} className="crow__name serif">
+                      {name}
+                    </span>
+                    <span className="crow__text">{text}</span>
+                  </span>
+                </div>
+                <ul className="cgroup__opts">
+                  {personal.phones.map((p) => {
+                    const Flag = flags[p.id]
+                    return (
+                      <li key={p.id}>
+                        <a
+                          className="copt"
+                          href={href(p)}
+                          aria-label={label(p.label, p.display)}
+                          {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                        >
+                          <Flag />
+                          <span className="copt__text">
+                            <span className="copt__c">{p.label}</span>
+                            <span className="copt__n">{p.display}</span>
+                          </span>
+                          <span className="copt__go" aria-hidden="true">
+                            {external ? '↗' : '→'}
+                          </span>
+                        </a>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </li>
+            ))}
+          </ul>
+          <p className="reach__note">
+            Pick the number that suits you. On a computer, Call and Messages open your phone or FaceTime app if one is
+            set up; the numbers are shown so you can copy them.
+          </p>
         </div>
 
-        <div className="sheet">
-          <div className="sheet__col">
-            <h2 className="sheet__h label">Call</h2>
-            <ul>
-              {personal.phones.map((p) => (
-                <li key={p.href}>
-                  <a href={p.href} className="sheet__item">
-                    <span className="label">{p.label}</span>
-                    <span className="sheet__v">{p.display}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+        <div className="reach reach--pro">
+          <h2 className="reach__h label label--accent">Professional enquiries</h2>
+          <ul className="reach__list">
+            <li>
+              <a className="crow crow--pro" href={contactLinks.email} aria-label={`Email, ${personal.email}`}>
+                <span className="crow__icon">
+                  <MailIcon />
+                </span>
+                <span className="crow__body">
+                  <span className="crow__name serif">Email</span>
+                  <span className="crow__text">For professional enquiries and opportunities.</span>
+                </span>
+                <span className="crow__detail">{personal.email}</span>
+                <span className="crow__go" aria-hidden="true">
+                  →
+                </span>
+              </a>
+              <div className="crow__aside">
+                <CopyEmail />
+              </div>
+            </li>
+          </ul>
+          <p className="reach__note">
+            Open to engineering, research and consulting opportunities in hardware, semiconductors, embedded systems,
+            signal processing and AI. Graduating June 2027, VJTI.
+          </p>
+        </div>
+
+        <div className="sheet sheet--two">
           <div className="sheet__col">
             <h2 className="sheet__h label">Profiles</h2>
             <ul>
