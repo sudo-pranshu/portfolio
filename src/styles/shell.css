@@ -96,8 +96,14 @@
   transform-origin: left;
   transition: transform var(--dur) var(--ease-out);
 }
+.nav__link:hover::after {
+  transform: scaleX(0.35);
+}
 .nav__link.active::after {
   transform: scaleX(1);
+}
+.nav__link:active {
+  color: var(--accent);
 }
 
 .nav__util {
@@ -315,4 +321,27 @@
   display: inline-block;
   padding-block: 0.3rem;
   line-height: 1.3;
+}
+
+/* Phone footer: fewer boxes, comfortable tap rows. */
+@media (max-width: 600px) {
+  .foot {
+    padding-block: var(--s-7) var(--s-5);
+  }
+  .foot__cell {
+    padding: 0.75rem var(--s-3);
+  }
+  .foot__nav {
+    gap: 0 1rem;
+  }
+  .foot__nav a,
+  .foot__socials a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+  }
+  .foot__cell--nav {
+    padding-inline: 0;
+    gap: var(--s-2);
+  }
 }

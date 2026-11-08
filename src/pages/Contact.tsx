@@ -1,5 +1,6 @@
 import { Page } from '../components/Page'
 import { CopyEmail } from '../components/CopyEmail'
+import { Reveal } from '../components/Reveal'
 import { Link } from 'react-router-dom'
 import { contactLinks, personal, socials } from '../config/personal'
 import { IndiaFlag, MailIcon, MessageIcon, PhoneIcon, UaeFlag, WhatsAppIcon } from '../components/ContactIcons'
@@ -56,20 +57,18 @@ export default function Contact() {
         <div className="reach reach--quick">
           <h2 className="reach__h label">Quick &amp; personal</h2>
           <ul className="reach__list">
-            {quick.map(({ id, name, text, Icon, external, href, label }) => (
-              <li key={id} className="cgroup" aria-labelledby={`cg-${id}`}>
-                <div className="cgroup__head">
+            {quick.map(({ id, name, text, Icon, external, href, label }, i) => (
+              <Reveal as="li" key={id} delay={i * 0.06} className="cgroup">
+                <div className="cgroup__head" id={`cg-${id}`}>
                   <span className="crow__icon">
                     <Icon />
                   </span>
                   <span className="crow__body">
-                    <span id={`cg-${id}`} className="crow__name serif">
-                      {name}
-                    </span>
+                    <span className="crow__name serif">{name}</span>
                     <span className="crow__text">{text}</span>
                   </span>
                 </div>
-                <ul className="cgroup__opts">
+                <ul className="cgroup__opts" aria-labelledby={`cg-${id}`}>
                   {personal.phones.map((p) => {
                     const Flag = flags[p.id]
                     return (
@@ -93,7 +92,7 @@ export default function Contact() {
                     )
                   })}
                 </ul>
-              </li>
+              </Reveal>
             ))}
           </ul>
           <p className="reach__note">
@@ -105,8 +104,8 @@ export default function Contact() {
         <div className="reach reach--pro">
           <h2 className="reach__h label label--accent">Professional enquiries</h2>
           <ul className="reach__list">
-            <li>
-              <a className="crow crow--pro" href={contactLinks.email} aria-label={`Email, ${personal.email}`}>
+            <Reveal as="li" className="cgroup">
+              <div className="cgroup__head" id="cg-email">
                 <span className="crow__icon">
                   <MailIcon />
                 </span>
@@ -114,15 +113,20 @@ export default function Contact() {
                   <span className="crow__name serif">Email</span>
                   <span className="crow__text">For professional enquiries and opportunities.</span>
                 </span>
-                <span className="crow__detail">{personal.email}</span>
-                <span className="crow__go" aria-hidden="true">
-                  →
-                </span>
-              </a>
-              <div className="crow__aside">
+              </div>
+              <div className="cgroup__opts cgroup__opts--one">
+                <a className="copt copt--mail" href={contactLinks.email} aria-label={`Email ${personal.email}`}>
+                  <span className="copt__text">
+                    <span className="copt__c">Write to</span>
+                    <span className="copt__n copt__n--mail">{personal.email}</span>
+                  </span>
+                  <span className="copt__go" aria-hidden="true">
+                    →
+                  </span>
+                </a>
                 <CopyEmail />
               </div>
-            </li>
+            </Reveal>
           </ul>
           <p className="reach__note">
             Open to engineering, research and consulting opportunities in hardware, semiconductors, embedded systems,

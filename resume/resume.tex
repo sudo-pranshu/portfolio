@@ -62,17 +62,18 @@ Bachelor of Technology in Electronics and Telecommunications; Minor in Artificia
 \proj{\lnk{https://github.com/rkt-1597/TremoSense-Project}{TremoSense} -- Tremor-Suppressing Spoon on Zephyr RTOS (team of 3)}{Zephyr, C, EKF, LQR, Simulink}
 \begin{itemize}
 \item Built a two-axis servo gimbal (MG995 roll, FS90MG pitch) on the XIAO nRF52840 Sense: 208\,Hz IMU, 2-state EKF roll/pitch estimation and a 2$\times$4 LQR gain, with servo commands every 10\,ms through Zephyr threads, a message queue and a semaphore.
-\item Validated the EKF--LQR design in MATLAB/Simulink at 1000\,Hz: over 90\% roll and 80\% pitch suppression across most of the 3--7\,Hz tremor band; residual RMS 0.346$^\circ$/0.573$^\circ$ under 8$^\circ$, 8\,Hz tremor.
-\end{itemize}
-\proj{NaviSight -- Assistive Navigation for the Visually Impaired}{Arduino, ESP32-CAM, TensorFlow Lite}
-\begin{itemize}
-\item Built an ultrasonic smart cane with haptic and buzzer alerts and GPS (L80-M39) + HC-05 location sharing by SMS, and deployed offline TensorFlow Lite object recognition on an ESP32-CAM.
+\item Structured the firmware as a data-ready-triggered IMU thread (EKF + LQR) feeding a lower-priority servo thread through a message queue, with 300-sample boot-time IMU calibration and pitch clamped away from Euler singularities.
+\item Validated the EKF--LQR design in MATLAB/Simulink at 1000\,Hz (simulation; bench benchmarking pending): over 90\% roll and 80\% pitch suppression across most of the 3--7\,Hz band; residual RMS 0.346$^\circ$/0.573$^\circ$ under 8$^\circ$, 8\,Hz tremor.
 \end{itemize}
 \proj{\lnk{https://github.com/sudo-pranshu/CircuitVision}{CircuitVision} -- Hand-Drawn Circuit to SPICE Netlist (team of 2, AI/ML minor)}{YOLOv8, OpenCV, EasyOCR, ngspice}
 \begin{itemize}
 \item Trained YOLOv8s on the CGHD handwritten-circuit dataset (2,981 photos, 9 classes), reaching 0.904 mAP50 and 0.611 mAP50-95 on an unseen drafter.
 \item Built paper-relative binarisation, HOG + SVM orientation and polarity classification, and wire tracing with symbol masking and crossovers (0.994 exact topology across 11 synthetic photo conditions).
 \item Generated SPICE netlists from EasyOCR-read values, validated by a CFG/Earley parser and simulated in ngspice; added an HMM text-to-netlist path (0.90 exact on held-out sentences); 136 tests.
+\end{itemize}
+\proj{NaviSight -- Assistive Navigation for the Visually Impaired}{Arduino, ESP32-CAM, TensorFlow Lite}
+\begin{itemize}
+\item Built an ultrasonic smart cane with haptic and buzzer alerts and GPS (L80-M39) + HC-05 location sharing by SMS, and deployed offline TensorFlow Lite object recognition on an ESP32-CAM.
 \end{itemize}
 \proj{\lnk{https://github.com/SRA-VJTI/Wall-E}{Wall-E} -- Self-Balancing, Line-Following Robot (SRA team)}{ESP32, ESP-IDF, PID}
 \begin{itemize}

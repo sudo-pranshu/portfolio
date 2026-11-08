@@ -273,8 +273,17 @@ main {
   column-gap: var(--col-gap);
   align-items: end;
   padding-bottom: var(--s-5);
-  border-bottom: 1px solid var(--border);
   margin-bottom: var(--s-7);
+  position: relative;
+}
+.sec-head__rule {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--border);
+  transform-origin: left;
 }
 .sec-head__idx {
   grid-column: 1 / span 1;
@@ -317,4 +326,64 @@ main {
 }
 .rules .wrap {
   padding-inline: calc(var(--gutter) / 2);
+}
+
+/* ---------- Polish layer: typography, affordance, press states ---------- */
+h1,
+h2,
+h3,
+.lede,
+.serif {
+  text-wrap: balance;
+}
+p,
+li,
+dd {
+  text-wrap: pretty;
+}
+
+.link:active {
+  transform: translateY(1px);
+}
+.link:focus-visible {
+  outline-offset: 4px;
+}
+
+/* Tech tags: a hairline-separated run in mono, never pills. */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0;
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.tags li + li::before {
+  content: '/';
+  margin-inline: 0.7em;
+  color: var(--faint);
+}
+
+/* Hover effects only where hover exists; project rows read as clickable. */
+@media (hover: hover) {
+  .fl:hover {
+    background: var(--surface-hover);
+    border-top-color: var(--accent);
+  }
+  .fl:hover .fl__frame img,
+  .fl:hover .fl__frame video {
+    transform: scale(1.03);
+  }
+  .fl:hover .fl__title {
+    color: var(--accent);
+  }
+  .fl:hover .fl__cta {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  .fl:hover .fl__cta .arrow {
+    transform: translateX(4px);
+  }
 }

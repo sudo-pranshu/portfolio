@@ -6,12 +6,12 @@ import { Reveal } from '../components/Reveal'
 import { SecHead } from '../components/SecHead'
 import { CopyEmail } from '../components/CopyEmail'
 import { Interests } from '../components/Interests'
-import { SignalFigure } from '../components/diagrams/SignalFigure'
 import { DemoVideo } from '../components/DemoVideo'
 import { Photo } from '../components/Photo'
+import { Flagship } from '../components/Flagship'
 import { SignalChain } from '../components/diagrams/SignalChain'
 import { SemesterPanel } from '../components/diagrams/SemesterPanel'
-import { personal } from '../config/personal'
+import { personal, asset } from '../config/personal'
 import { getProject } from '../data/projects'
 import { education, experience, extras } from '../data/career'
 import { easeOut, lineReveal } from '../animations/motion'
@@ -67,6 +67,19 @@ export default function Home() {
             I build the whole signal chain: the sensor, the firmware, the radio link, the filter, the controller, and
             the screen someone reads at the end.
           </p>
+          <m.div
+            className="hero__cta"
+            initial={reduce ? false : { opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: easeOut, delay: 0.8 }}
+          >
+            <Link to="/work" className="link">
+              Selected work <span className="arrow">→</span>
+            </Link>
+            <Link to="/contact" className="link">
+              Get in touch <span className="arrow">→</span>
+            </Link>
+          </m.div>
         </m.div>
 
         <m.div
@@ -122,129 +135,80 @@ export default function Home() {
           />
         </div>
 
-        {/* Flagship */}
-        <Reveal>
-          <Link to="/work/parkinsense" className="flag" aria-label="ParkinSense case study">
-            <div className="wrap flag__inner">
-              <div className="flag__text">
-                <span className="label label--accent">01 · Flagship · IIT Bombay 2026</span>
-                <h3 className="flag__title serif">{ps.title}</h3>
-                <p className="flag__sub">{ps.subtitle}</p>
-                <p className="flag__desc muted">{ps.summary}</p>
-                <dl className="flag__figs">
-                  {ps.keyFigures.map((f) => (
-                    <div key={f.label}>
-                      <dt className="label">{f.label}</dt>
-                      <dd className="num">
-                        {f.value}
-                        {f.unit && <small>{f.unit}</small>}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-                <span className="flag__cta link">
-                  Read the case study <span className="arrow">→</span>
-                </span>
-              </div>
-              <div className="flag__fig">
-                <Photo
-                  className="flag__photo"
-                  src="assets/work/parkinsense-wrist"
+        {/* Flagship collection: one template, three projects, equal weight */}
+        <p className="flagships__hint label" aria-hidden="true">
+          <span>Flagship projects</span>
+          <span>Swipe →</span>
+        </p>
+        <div className="flagships" role="group" aria-label="Flagship projects">
+          <Flagship
+            project={ps}
+            domain="Wearable · Embedded · Signal processing"
+            chain="IMU 104 Hz + PPG → BLE → filters, Welch spectrum → tremor state, heart rate"
+            ratio={1200 / 1310}
+            caption="Prototype worn on the wrist"
+            media={
+              <Photo
+                src="assets/work/parkinsense-wrist"
+                width={1200}
+                height={1310}
+                alt="ParkinSense prototype worn on the wrist: a white 3D-printed enclosure on a black elastic strap"
+              />
+            }
+          />
+          <Flagship
+            project={ts}
+            flip
+            domain="Control · Estimation · Embedded"
+            chain="IMU 208 Hz → EKF roll, pitch → LQR → two servos every 10 ms"
+            ratio={1.7}
+            caption="Bench test, and simulated roll and pitch response"
+            media={
+              <div className="fl__split">
+                <DemoVideo bare />
+                <img
+                  src={asset('assets/work/tremosense-roll-sim.webp')}
+                  alt="Simulated roll-axis frequency response of the TremoSense controller from 0 to 8 hertz"
                   width={1200}
-                  height={1310}
-                  alt="ParkinSense prototype worn on the wrist: a white 3D-printed enclosure on a black elastic strap"
+                  height={641}
+                  loading="lazy"
+                  decoding="async"
                 />
-                <SignalFigure compact />
+                <img
+                  src={asset('assets/work/tremosense-pitch-sim.webp')}
+                  alt="Simulated pitch-axis frequency response of the TremoSense controller from 0 to 8 hertz"
+                  width={1200}
+                  height={639}
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
-            </div>
-          </Link>
-        </Reveal>
+            }
+          />
+          <Flagship
+            project={cv}
+            domain="Computer vision · OCR · SPICE"
+            chain="Photo → YOLOv8 → wire tracing → EasyOCR → SPICE netlist"
+            ratio={1269 / 952}
+            caption="Detector output on a hand-drawn circuit"
+            media={
+              <Photo
+                src="assets/work/cv-detect-1"
+                width={1269}
+                height={952}
+                alt="A hand-drawn audio circuit on grid paper with the detector's boxes over every resistor, capacitor, ground, junction and text label"
+              />
+            }
+          />
+        </div>
 
         <div className="wrap">
-          {/* TremoSense: offset technical panel */}
-          <Reveal className="tremo">
-            <Link to="/work/tremosense" className="tremo__link">
-              <div className="tremo__head">
-                <span className="label">{ts.index}</span>
-                <h3 className="tremo__title serif">{ts.title}</h3>
-                <p className="tremo__sub">{ts.subtitle}</p>
-              </div>
-              <div className="tremo__body">
-                <DemoVideo className="tremo__demo" caption="Bench test, from the repo" />
-                <div className="tremo__text">
-                  <p className="tremo__desc">{ts.description}</p>
-                  <p className="muted tremo__params">{ts.parameters}</p>
-                  <span className="link">
-                    EKF + LQR case study <span className="arrow">→</span>
-                  </span>
-                </div>
-              </div>
-            </Link>
-          </Reveal>
-
           {/* NaviSight + Wall-E: compact ledger rows */}
           <div className="also">
             <span className="also__label label">Also</span>
             <ul className="also__list">
               {[
                 { p: ns, tag: 'Assistive', chain: ['Ultrasonic → haptics', 'ESP32-CAM → TFLite, on-device'] },
-              ].map(({ p, tag, chain }, i) => (
-                <Reveal as="li" key={p.slug} delay={i * 0.08}>
-                  <Link to={`/work/${p.slug}`} className="also__row">
-                    <span className="label">{p.index}</span>
-                    <span className="also__title serif">{p.shortTitle ?? p.title}</span>
-                    <span className="also__sub">
-                      {p.subtitle}
-                      <span className="label">{tag}</span>
-                    </span>
-                    <span className="also__chain">
-                      {chain.map((c) => (
-                        <span key={c}>{c}</span>
-                      ))}
-                    </span>
-                    <span className="also__arrow" aria-hidden="true">
-                      →
-                    </span>
-                  </Link>
-                </Reveal>
-              ))}
-            </ul>
-          </div>
-
-          {/* CircuitVision: second flagship, image-led */}
-          <Reveal className="cvf">
-            <div className="cvf__media">
-              <Photo
-                src="assets/work/cv-detect-1"
-                width={1269}
-                height={952}
-                alt="A hand-drawn audio circuit on grid paper with the detector's boxes over every resistor, capacitor, ground, junction and text label"
-                caption="Detector output on a hand-drawn circuit"
-              />
-            </div>
-            <Link to="/work/circuitvision" className="cvf__text">
-              <span className="label label--accent">{cv.index} · Flagship · Computer vision</span>
-              <h3 className="cvf__title serif">{cv.title}</h3>
-              <p className="cvf__sub">{cv.subtitle}</p>
-              <dl className="cvf__figs">
-                {cv.keyFigures.map((f) => (
-                  <div key={f.label}>
-                    <dt className="label">{f.label}</dt>
-                    <dd className="num">{f.value}</dd>
-                  </div>
-                ))}
-              </dl>
-              <span className="link">
-                Read the case study <span className="arrow">→</span>
-              </span>
-            </Link>
-          </Reveal>
-
-          {/* NaviSight + Wall-E: compact ledger rows */}
-          <div className="also">
-            <span className="also__label label">More</span>
-            <ul className="also__list">
-              {[
                 { p: we, tag: 'Robotics · SRA', chain: ['Light sensor array → PID → motors'] },
                 { p: rl, tag: 'Reinforcement learning', chain: ['Safety layer + Q-learning → lane, speed', 'DQN in PyTorch'] },
                 { p: tr, tag: 'Computer vision', chain: ['Camera → YOLOv8 → OCR', 'CSV log → Streamlit'] },

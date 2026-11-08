@@ -8,6 +8,7 @@
   --muted: #8f8c85;
   --faint: #5b5954;
   --border: #2a2926;
+  --border-strong: #46443f;
   --rule: rgba(236, 233, 226, 0.045);
   --accent: #ff4a2b;
   --accent-contrast: #0e0e0d;
@@ -25,6 +26,7 @@
   --muted: #5c5a55;
   --faint: #8d8a83;
   --border: #cfcbc1;
+  --border-strong: #a8a397;
   --rule: rgba(18, 18, 17, 0.06);
   --accent: #c8270e;
   --accent-contrast: #efede7;
@@ -73,4 +75,18 @@
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
   --dur-fast: 160ms;
   --dur: 280ms;
+}
+
+/* Phones get their own scale: tighter rhythm, smaller display type, slimmer nav. */
+@media (max-width: 600px) {
+  :root {
+    --t-h2: clamp(2rem, 8.6vw, 2.6rem);
+    --t-lede: clamp(1.3rem, 5.6vw, 1.6rem);
+    --section: 3rem;
+    --s-7: 2.25rem;
+    --s-8: 3rem;
+    --s-9: 4rem;
+    --gutter: 1.125rem;
+    --nav-h: 56px;
+  }
 }

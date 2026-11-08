@@ -3,7 +3,7 @@ import { Page } from '../components/Page'
 import { Reveal } from '../components/Reveal'
 import { projects } from '../data/projects'
 
-const isFlag = (slug: string) => slug === 'parkinsense' || slug === 'circuitvision'
+const isFlag = (slug: string) => slug === 'parkinsense' || slug === 'tremosense' || slug === 'circuitvision'
 
 export default function Work() {
   return (

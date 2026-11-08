@@ -101,34 +101,8 @@ export const projects: Project[] = [
     accent: 'var(--accent)',
   },
   {
-    slug: 'navisight',
-    index: '03',
-    title: 'NaviSight',
-    subtitle: 'Two assistive devices for visually impaired navigation',
-    description:
-      'Echo-Stride, a smart cane with obstacle haptics and location sharing, and EyeCue, an ESP32-CAM module that recognises objects on-device.',
-    summary:
-      'Two devices that split the problem: the cane handles what is directly ahead and where the user is; the vision module handles what is around them.',
-    context: 'Academic project',
-    role: 'Hardware, firmware and on-device ML',
-    period: null,
-    technologies: ['Arduino Uno', 'Ultrasonic', 'GPS L80-M39', 'HC-05', 'ESP32-CAM', 'TensorFlow Lite'],
-    keyFigures: [
-      { value: '2', label: 'Devices, one system' },
-    ],
-    technicalDetails: [
-      'Ultrasonic obstacle detection with vibration and buzzer alerts',
-      'GPS + Bluetooth location sent to trusted contacts by SMS',
-      'TFLite models running offline on the ESP32-CAM',
-    ],
-    github: null,
-    demo: null,
-    images: [],
-    accent: 'var(--accent)',
-  },
-  {
     slug: 'circuitvision',
-    index: '04',
+    index: '03',
     title: 'CircuitVision',
     subtitle: 'Hand-drawn circuit photos to validated, simulatable SPICE netlists',
     description:
@@ -162,6 +136,32 @@ export const projects: Project[] = [
     images: [
       { src: asset('assets/work/cv-u01-overlay.jpg'), alt: 'CircuitVision output on a hand-drawn circuit photo: detected components boxed and each wire net coloured' },
     ],
+    accent: 'var(--accent)',
+  },
+  {
+    slug: 'navisight',
+    index: '04',
+    title: 'NaviSight',
+    subtitle: 'Two assistive devices for visually impaired navigation',
+    description:
+      'Echo-Stride, a smart cane with obstacle haptics and location sharing, and EyeCue, an ESP32-CAM module that recognises objects on-device.',
+    summary:
+      'Two devices that split the problem: the cane handles what is directly ahead and where the user is; the vision module handles what is around them.',
+    context: 'Academic project',
+    role: 'Hardware, firmware and on-device ML',
+    period: null,
+    technologies: ['Arduino Uno', 'Ultrasonic', 'GPS L80-M39', 'HC-05', 'ESP32-CAM', 'TensorFlow Lite'],
+    keyFigures: [
+      { value: '2', label: 'Devices, one system' },
+    ],
+    technicalDetails: [
+      'Ultrasonic obstacle detection with vibration and buzzer alerts',
+      'GPS + Bluetooth location sent to trusted contacts by SMS',
+      'TFLite models running offline on the ESP32-CAM',
+    ],
+    github: null,
+    demo: null,
+    images: [],
     accent: 'var(--accent)',
   },
   {

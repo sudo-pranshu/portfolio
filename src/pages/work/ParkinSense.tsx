@@ -1,5 +1,6 @@
 import { Page } from '../../components/Page'
 import { CaseHeader, CaseLinks, CaseSection, NextProject } from '../../components/Case'
+import { WristDemo } from '../../components/WristDemo'
 import { Reveal } from '../../components/Reveal'
 import { Photo } from '../../components/Photo'
 import { ArchDiagram } from '../../components/diagrams/ArchDiagram'
@@ -97,6 +98,21 @@ export default function ParkinSense() {
           </p>
         </div>
         <ArchDiagram />
+      </section>
+
+      <section className="wrap wrist-band" aria-label="Wrist signal demo">
+        <Reveal className="wrist-band__text">
+          <span className="label label--accent">Interactive</span>
+          <h2 className="wrist-band__t serif">What the band sees at the wrist.</h2>
+          <p className="muted">
+            Pick a situation. At rest the signal is nearly flat; with a tremor it settles into a steady oscillation and the
+            band reports a frequency and score; walking produces a different, slower pattern, which is why steps are not
+            counted while a tremor is detected.
+          </p>
+        </Reveal>
+        <Reveal className="wrist-band__demo">
+          <WristDemo />
+        </Reveal>
       </section>
 
       <CaseSection n="03" title="Hardware and firmware" kicker="Acquire, timestamp, pack; nothing else on the device." id="hw">

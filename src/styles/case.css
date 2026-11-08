@@ -759,17 +759,10 @@
   align-items: end;
 }
 .ps-photos__main {
-  grid-column: 1 / span 7;
-}
-.ps-photos__main img {
-  aspect-ratio: 5 / 4;
-  object-position: 50% 60%;
+  grid-column: 1 / span 5;
 }
 .ps-photos__side {
-  grid-column: 8 / -1;
-}
-.ps-photos__side img {
-  aspect-ratio: 1 / 1;
+  grid-column: 6 / -1;
 }
 .ps-dash {
   display: grid;
@@ -1127,4 +1120,382 @@
   .dsheet.dsheet--stack .dsheet__v {
     white-space: normal;
   }
+}
+
+/* ================= TREMOSENSE: stabilisation demo (from the AVERRA presentation site) ================= */
+.spoon-band {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--col-gap);
+  align-items: center;
+  padding-block: var(--s-8);
+  border-top: 1px solid var(--border);
+}
+.spoon-band__text {
+  grid-column: 1 / span 5;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+.spoon-band__t {
+  font-size: var(--t-h2);
+  line-height: 1;
+  font-weight: 400;
+}
+.spoon-band__demo {
+  grid-column: 7 / -1;
+}
+.spoon {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  max-width: 26rem;
+  margin-inline: auto;
+  padding: var(--s-4);
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+}
+.spoon__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+}
+.spoon__switch {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-height: 2.25rem;
+  padding: 0 0.7rem;
+  border: 1px solid var(--border-strong);
+  color: var(--muted);
+  font: 500 0.7rem / 1 var(--f-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color 0.2s, border-color 0.2s;
+}
+.spoon__switch:hover {
+  color: var(--foreground);
+  border-color: var(--foreground);
+}
+.spoon__track {
+  position: relative;
+  width: 1.7rem;
+  height: 0.9rem;
+  background: var(--border-strong);
+  transition: background 0.25s;
+}
+.spoon__track[data-on='true'] {
+  background: var(--foreground);
+}
+.spoon__thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: calc(0.9rem - 4px);
+  height: calc(0.9rem - 4px);
+  background: var(--accent);
+  transition: transform 0.25s var(--ease-out);
+}
+.spoon__track[data-on='true'] .spoon__thumb {
+  transform: translateX(0.8rem);
+  background: var(--background);
+}
+.spoon__stage {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 15.5rem;
+  margin-inline: auto;
+  overflow: visible;
+}
+.spoon__trace {
+  display: block;
+  width: 100%;
+  height: 3rem;
+}
+.spoon__legend {
+  display: flex;
+  gap: var(--s-2);
+  flex-wrap: wrap;
+}
+.spoon__key--raw {
+  color: var(--accent);
+}
+.spoon__chips {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-top: var(--s-2);
+}
+.spoon__chips button {
+  min-height: 2.5rem;
+  border: 1px solid var(--border-strong);
+  margin-left: -1px;
+  color: var(--muted);
+  font: 500 0.78rem / 1 var(--f-mono);
+  letter-spacing: 0.04em;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+}
+.spoon__chips button:first-child {
+  margin-left: 0;
+}
+.spoon__chips button:hover {
+  color: var(--foreground);
+}
+.spoon__chips button[aria-pressed='true'] {
+  color: var(--foreground);
+  background: var(--background);
+  border-color: var(--accent);
+  position: relative;
+  z-index: 1;
+}
+.spoon__note {
+  margin-top: var(--s-2);
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+@media (max-width: 900px) {
+  .spoon-band {
+    grid-template-columns: 1fr;
+    row-gap: var(--s-5);
+    padding-block: var(--s-6);
+  }
+  .spoon-band__text,
+  .spoon-band__demo {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 600px) {
+  .spoon {
+    padding: var(--s-3);
+  }
+  .spoon__stage {
+    max-height: 13rem;
+  }
+}
+.spoon__key:not(.spoon__key--raw){color:var(--foreground)}
+
+/* ================= PARKINSENSE: wrist signal demo (from the AVERRA presentation site) ================= */
+.wrist-band {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--col-gap);
+  align-items: center;
+  padding-block: var(--s-8);
+  border-top: 1px solid var(--border);
+}
+.wrist-band__text {
+  grid-column: 1 / span 5;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+.wrist-band__t {
+  font-size: var(--t-h2);
+  line-height: 1;
+  font-weight: 400;
+}
+.wrist-band__demo {
+  grid-column: 6 / -1;
+}
+.wrist {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  max-width: 34rem;
+  margin-inline: auto;
+  padding: var(--s-4);
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+}
+.wrist__head {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  color: var(--foreground);
+}
+.wrist__dot {
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+}
+.wrist__modes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.wrist__modes button {
+  min-height: 2.5rem;
+  margin-left: -1px;
+  border: 1px solid var(--border-strong);
+  color: var(--muted);
+  font: 500 0.78rem / 1 var(--f-mono);
+  letter-spacing: 0.04em;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+}
+.wrist__modes button:first-child {
+  margin-left: 0;
+}
+.wrist__modes button:hover {
+  color: var(--foreground);
+}
+.wrist__modes button[aria-pressed='true'] {
+  position: relative;
+  z-index: 1;
+  color: var(--foreground);
+  background: var(--background);
+  border-color: var(--accent);
+}
+.wrist__plot {
+  display: block;
+  width: 100%;
+  height: 7.5rem;
+  margin-top: var(--s-3);
+  background: var(--background);
+  border: 1px solid var(--border);
+}
+.wrist__line {
+  stroke: var(--foreground);
+  transition: stroke 0.3s;
+}
+.wrist__plot[data-mode='tremor'] .wrist__line {
+  stroke: var(--accent);
+}
+.wrist__cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-2);
+  margin-top: var(--s-2);
+}
+.wrist__card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--border);
+  background: var(--background);
+  min-width: 0;
+}
+.wrist__card dd {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+.wrist__card dd small {
+  margin-left: 0.4rem;
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--muted);
+}
+.wrist__status {
+  transition: color 0.3s;
+}
+.wrist__status[data-mode='tremor'] {
+  color: var(--accent);
+}
+.wrist__hr {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.wrist__hr svg {
+  width: 1rem;
+  height: 1rem;
+  overflow: visible;
+}
+.wrist__hr path {
+  fill: var(--accent);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.wrist__note {
+  margin-top: var(--s-2);
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+@media (max-width: 900px) {
+  .wrist-band {
+    grid-template-columns: 1fr;
+    row-gap: var(--s-5);
+    padding-block: var(--s-6);
+  }
+  .wrist-band__text,
+  .wrist-band__demo {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 600px) {
+  .wrist {
+    padding: var(--s-3);
+  }
+  .wrist__plot {
+    height: 6rem;
+  }
+}
+
+/* ================= TREMOSENSE: bench video ================= */
+.bench-band {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--col-gap);
+  align-items: center;
+  padding-block: var(--s-8);
+  border-top: 1px solid var(--border);
+}
+.bench-band__media {
+  grid-column: 1 / span 5;
+}
+.bench-band__text {
+  grid-column: 7 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--s-4);
+}
+.bench-band__t {
+  font-size: var(--t-h2);
+  line-height: 1;
+  font-weight: 400;
+}
+.bench-fig {
+  margin: 0;
+  max-width: 24rem;
+  border: 1px solid var(--border-strong);
+  background: #000;
+}
+.bench-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  background: #000;
+}
+@media (max-width: 600px) {
+  .bench-fig {
+    max-width: 16rem;
+  }
+}
+@media (max-width: 900px) {
+  .bench-band {
+    grid-template-columns: 1fr;
+    row-gap: var(--s-5);
+    padding-block: var(--s-6);
+  }
+  .bench-band__media,
+  .bench-band__text {
+    grid-column: 1 / -1;
+  }
+  .bench-fig {
+    max-width: min(100%, 22rem);
+  }
+}
+
+.photo picture {
+  display: block;
+}
+/* Cards in the phone swipe row start off-screen, so their photos are never wiped in. */
+.fl__frame .photo picture {
+  clip-path: none !important;
 }

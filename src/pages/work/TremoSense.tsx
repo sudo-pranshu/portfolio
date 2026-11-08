@@ -1,7 +1,8 @@
 import { Page } from '../../components/Page'
-import { CaseHeader, CaseLinks, NextProject } from '../../components/Case'
+import { CaseHeader, CaseLinks, CaseSection, NextProject } from '../../components/Case'
 import { Reveal } from '../../components/Reveal'
-import { DemoVideo } from '../../components/DemoVideo'
+import { BenchVideo } from '../../components/BenchVideo'
+import { SpoonDemo } from '../../components/SpoonDemo'
 import { ControlLoop } from '../../components/diagrams/ControlLoop'
 import { TestPlan } from '../../components/diagrams/TestPlan'
 import { getProject } from '../../data/projects'
@@ -25,6 +26,19 @@ const datasheet: [string, string, string][] = [
   ['Roll suppression', '> 90%', 'Most of 3–7 Hz, 2–7° (sim.)'],
   ['Pitch suppression', '> 80%', 'Most of 3–7 Hz, 2–7° (sim.)'],
   ['Residual RMS', '0.346° / 0.573°', 'Roll / pitch, 8° at 8 Hz (sim.)'],
+]
+
+/** Evidence: tremosense-app sources and commit log, MATLAB_Simulink scripts, README "Future Scope". */
+const status: [string, string, string][] = [
+  ['Two-thread Zephyr firmware: sensing, estimation, control, actuation', 'Implemented', 'IMU thread, servo thread, message queue, semaphore'],
+  ['IMU read at 208 Hz, boot-time offset calibration', 'Implemented', 'Calibration is 300 samples over 3 s, enabled in the board config'],
+  ['2-state EKF on roll and pitch, on the nRF52840', 'Implemented', 'ekf.c; commit log records a successful run'],
+  ['LQR control of both servos, on the nRF52840', 'Implemented', 'lqr.c; commit log records a successful run'],
+  ['EKF + LQR validation in MATLAB / Simulink at 1000 Hz', 'Implemented, simulated', 'Results above are from the model, not the bench'],
+  ['Controller gain K and noise covariances', 'Set per rig', 'constants.h is a template in the public repo; K comes from LQR_ARE.m'],
+  ['Measured tremor suppression on the hardware', 'Not yet', 'Quantitative hardware benchmarking is on the team’s future-work list'],
+  ['Tremor frequency and amplitude identification, clinician reporting', 'Stated objective, not built', 'No such module in the firmware'],
+  ['Servo dynamics in the model, adaptive control, smaller build, battery system', 'Planned', 'Listed as future scope'],
 ]
 
 export default function TremoSense() {
@@ -51,6 +65,43 @@ export default function TremoSense() {
         </Reveal>
       </section>
 
+      <section className="wrap spoon-band" aria-label="Stabilisation demo">
+        <Reveal className="spoon-band__text">
+          <span className="label label--accent">Interactive</span>
+          <h2 className="spoon-band__t serif">The handle shakes. The spoon stays.</h2>
+          <p className="muted">
+            Switch the controller off and the spoon head follows the hand. Switch it on and the two servos counter-rotate it
+            so only a small slow drift is left. Pick a tremor frequency in the 4 to 8 Hz range to see how the
+            residual changes.
+          </p>
+        </Reveal>
+        <Reveal className="spoon-band__demo">
+          <SpoonDemo />
+        </Reveal>
+      </section>
+
+      <section className="wrap bench-band" aria-label="Bench demonstration video">
+        <Reveal className="bench-band__media">
+          <figure className="bench-fig">
+            <BenchVideo />
+          </figure>
+        </Reveal>
+        <Reveal className="bench-band__text">
+          <span className="label label--accent">Bench footage</span>
+          <h2 className="bench-band__t serif">The real build, moving against the hand.</h2>
+          <p className="muted">
+            This is the demonstration clip from the project repository. A hand holds the two-axis servo gimbal while the roll
+            servo and the pitch servo rotate the spoon against the motion. It shows the mechanism working on the bench;
+            it is not a user trial, and the suppression figures on this page come from the Simulink model, not from this
+            footage.
+          </p>
+          <a className="link" href="https://github.com/rkt-1597/TremoSense-Project/blob/main/assets/tremosense.gif" target="_blank" rel="noreferrer">
+            Source clip in the repository <span className="arrow">↗</span>
+          </a>
+          <p className="bench-band__meta label">7 s loop · plays muted · no audio track in the source</p>
+        </Reveal>
+      </section>
+
       <section className="wrap ts-split" aria-label="Design and results">
         <aside className="ts-split__sheet">
           <h2 className="csec__title">Datasheet</h2>
@@ -70,17 +121,14 @@ export default function TremoSense() {
         </aside>
 
         <div className="ts-split__body">
-          <div className="ts-block ts-block--demo">
-            <DemoVideo caption="Bench test of the prototype" />
-            <div className="ts-block__text">
-              <span className="label label--accent">Prototype</span>
-              <h3 className="ts-block__t">Two servos, one gimbal</h3>
-              <p>
-                The MG995 corrects roll and the FS90MG corrects pitch. On power-up the board is held level while it
-                calibrates the IMU: the blue LED stays on for three seconds, then blinks while offsets are logged, and
-                the servos take over.
-              </p>
-            </div>
+          <div className="ts-block">
+            <span className="label label--accent">Prototype</span>
+            <h3 className="ts-block__t">Two servos, one gimbal</h3>
+            <p>
+              The MG995 corrects roll and the FS90MG corrects pitch. On power-up the board is held level while it
+              calibrates the IMU: the blue LED stays on for three seconds, then blinks while offsets are logged, and
+              the servos take over.
+            </p>
           </div>
 
           <div className="ts-block">
@@ -132,6 +180,39 @@ export default function TremoSense() {
               />
               <figcaption className="label">Fig. 02 · Roll-axis frequency response, 2–7° tremor, from the project’s Simulink model</figcaption>
             </figure>
+            <figure className="ts-plot">
+              <img
+                src={asset('assets/work/tremosense-pitch-sim.webp')}
+                alt="MATLAB plot: pitch-axis magnitude and phase response from 0 to 8 hertz for tremor amplitudes of 2 to 7 degrees."
+                width={1200}
+                height={639}
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption className="label">Fig. 03 · Pitch-axis frequency response, 2–7° tremor, from the Simulink model</figcaption>
+            </figure>
+            <figure className="ts-plot">
+              <img
+                src={asset('assets/work/tremosense-ekf-sim.webp')}
+                alt="Simulink scope: simulated 8 degree, 8 hertz roll and pitch tremor input and the EKF estimate over two seconds, tracking closely."
+                width={1400}
+                height={733}
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption className="label">Fig. 04 · Simulated 8° at 8 Hz input against the EKF estimate, roll and pitch (Simulink scope)</figcaption>
+            </figure>
+            <figure className="ts-plot">
+              <img
+                src={asset('assets/work/tremosense-lqr-sim.webp')}
+                alt="Simulink scope: LQR counter-motion against the tremor input for roll and pitch, with the small residual motion below. Residual RMS is 0.346 degrees on roll and 0.573 degrees on pitch."
+                width={1400}
+                height={735}
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption className="label">Fig. 05 · LQR counter-motion against input; residual RMS 0.346° roll, 0.573° pitch (simulated)</figcaption>
+            </figure>
           </div>
 
           <div className="ts-block">
@@ -145,6 +226,40 @@ export default function TremoSense() {
           </div>
         </div>
       </section>
+
+      <CaseSection n="02" title="Implemented and planned" kicker="What exists, and what doesn’t yet." wide id="status">
+        <div className="tscroll">
+          <table className="dsheet dsheet--stack">
+            <caption className="sr-only">Implementation status</caption>
+            <thead>
+              <tr>
+                <th scope="col" className="label">
+                  Capability
+                </th>
+                <th scope="col" className="label">
+                  Status
+                </th>
+                <th scope="col" className="label">
+                  Evidence / note
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {status.map(([a, b, c]) => (
+                <tr key={a}>
+                  <th scope="row">{a}</th>
+                  <td className="dsheet__v">{b}</td>
+                  <td className="muted">{c}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="ts-split__note muted">
+          Team: Prithvi Tambewagh, Pawan Shinde and Pranshu Kumar, VJTI. Source: the public repository and its Simulink
+          scripts.
+        </p>
+      </CaseSection>
 
       <CaseLinks p={p} />
       <NextProject slug={p.slug} />

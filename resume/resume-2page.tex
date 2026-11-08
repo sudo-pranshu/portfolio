@@ -74,10 +74,19 @@ Minor in Artificial Intelligence and Machine Learning
 
 \proj{\lnk{https://github.com/rkt-1597/TremoSense-Project}{TremoSense} -- Anti-Tremor Assistive Spoon for Parkinson's Patients \normalfont(Zephyr RTOS, C, EKF, LQR, Simulink)}
 \begin{itemize}
-\item Engineered a 2-axis active stabilisation system that suppresses pathological hand tremor while preserving intentional motion, improving usability for Parkinson's patients during eating.
+\item Engineered a 2-axis active stabilisation system for hand-tremor suppression, aimed at helping people with Parkinson's hold a spoon steady while eating.
 \item Integrated the LSM6DS3 6-DoF IMU on a XIAO nRF52840 Sense (ARM Cortex-M4F) sampling at 208\,Hz, driving an MG995 roll and FS90MG pitch servo with commands every 10\,ms through Zephyr threads, a message queue and a semaphore.
-\item Designed a 2-state Extended Kalman Filter for roll/pitch estimation, removing gyroscope drift and high-frequency noise, and a 2$\times$4 LQR gain for coordinated two-axis stabilisation with lower control effort than PID.
-\item Validated the EKF--LQR design in MATLAB/Simulink at 1000\,Hz: over 90\% roll and 80\% pitch suppression across most of the 3--7\,Hz tremor band; residual RMS 0.346$^\circ$/0.573$^\circ$ under 8$^\circ$, 8\,Hz tremor.
+\item Designed a 2-state Extended Kalman Filter for roll/pitch estimation, removing gyroscope drift and high-frequency noise, and a 2$\times$4 LQR gain for coordinated two-axis stabilisation.
+\item Validated the EKF--LQR design in MATLAB/Simulink at 1000\,Hz (simulation; bench benchmarking pending): over 90\% roll and 80\% pitch suppression across most of the 3--7\,Hz tremor band; residual RMS 0.346$^\circ$/0.573$^\circ$ under 8$^\circ$, 8\,Hz tremor.
+\end{itemize}
+
+\proj{\lnk{https://github.com/sudo-pranshu/CircuitVision}{CircuitVision} -- Hand-Drawn Circuit to SPICE Netlist \normalfont(AI/ML minor, team of 2; YOLOv8, OpenCV, EasyOCR, ngspice)}
+\begin{itemize}
+\item Built an end-to-end pipeline that turns a photo of a hand-drawn circuit into a simulated SPICE netlist: binarisation, symbol detection, orientation, wire tracing, value reading, netlist generation, grammar validation and ngspice simulation.
+\item Trained YOLOv8s on the CGHD handwritten-circuit dataset (2,981 training photos, 9 classes), reaching 0.904 mAP50 and 0.611 mAP50-95 on a held-out drafter.
+\item Implemented paper-relative binarisation, HOG + SVM orientation and polarity classification, and wire tracing with symbol masking and crossover handling (0.994 exact topology across 11 synthetic photo conditions).
+\item Generated netlists from EasyOCR-read values, validated by a CFG/Earley parser before simulation; added an HMM (Viterbi) text-to-netlist path scoring 0.90 exact on held-out sentences; delivered a Gradio app and 136 automated tests.
+\item Measured honestly on real photos: 37.5\% of 48 analog circuits fully correct with ground-truth boxes, 10.4\% with detector boxes; identified handwritten-value OCR as the main bottleneck.
 \end{itemize}
 
 \proj{NaviSight -- Assistive Navigation for the Visually Impaired \normalfont(Arduino, ESP32-CAM, TensorFlow Lite)}
@@ -93,15 +102,6 @@ Minor in Artificial Intelligence and Machine Learning
 \begin{itemize}
 \item Trained and deployed lightweight TensorFlow Lite models on the ESP32-CAM for offline, low-power object/person recognition, with on-device preprocessing and inference.
 \item Integrating text-to-speech audio feedback and optimising form factor and power for daily outdoor use.
-\end{itemize}
-
-\proj{\lnk{https://github.com/sudo-pranshu/CircuitVision}{CircuitVision} -- Hand-Drawn Circuit to SPICE Netlist \normalfont(AI/ML minor, team of 2; YOLOv8, OpenCV, EasyOCR, ngspice)}
-\begin{itemize}
-\item Built an end-to-end pipeline that turns a photo of a hand-drawn circuit into a simulated SPICE netlist: binarisation, symbol detection, orientation, wire tracing, value reading, netlist generation, grammar validation and ngspice simulation.
-\item Trained YOLOv8s on the CGHD handwritten-circuit dataset (2,981 training photos, 9 classes), reaching 0.904 mAP50 and 0.611 mAP50-95 on a held-out drafter.
-\item Implemented paper-relative binarisation, HOG + SVM orientation and polarity classification, and wire tracing with symbol masking and crossover handling (0.994 exact topology across 11 synthetic photo conditions).
-\item Generated netlists from EasyOCR-read values, validated by a CFG/Earley parser before simulation; added an HMM (Viterbi) text-to-netlist path scoring 0.90 exact on held-out sentences; delivered a Gradio app and 136 automated tests.
-\item Measured honestly on real photos: 37.5\% of 48 analog circuits fully correct with ground-truth boxes, 10.4\% with detector boxes; identified handwritten-value OCR as the main bottleneck.
 \end{itemize}
 
 \proj{\lnk{https://github.com/SRA-VJTI/Wall-E}{Wall-E} -- Self-Balancing, Line-Following Robot \normalfont(ESP32, ESP-IDF, Git; SRA)}
