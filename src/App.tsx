@@ -5,6 +5,7 @@ import { Nav } from './components/Nav'
 import { Footer } from './components/Footer'
 import { RecruiterBar } from './components/RecruiterBar'
 import { useRecruiter } from './hooks/useRecruiter'
+import { useAutoRefresh } from './hooks/useAutoRefresh'
 import Home from './pages/Home'
 
 /** A deploy can leave an open tab pointing at files that no longer exist. Reload once to pick up the new build. */
@@ -46,7 +47,6 @@ const loaders = {
   education: () => import('./pages/Education'),
   contact: () => import('./pages/Contact'),
   resume: () => import('./pages/Resume'),
-  lab: () => import('./pages/Lab'),
   recruiter: () => import('./pages/Recruiter'),
   notFound: () => import('./pages/NotFound'),
   parkinsense: () => import('./pages/work/ParkinSense'),
@@ -63,7 +63,6 @@ const Experience = lazy(retry(loaders.experience))
 const Education = lazy(retry(loaders.education))
 const Contact = lazy(retry(loaders.contact))
 const Resume = lazy(retry(loaders.resume))
-const Lab = lazy(retry(loaders.lab))
 const Recruiter = lazy(retry(loaders.recruiter))
 const NotFound = lazy(retry(loaders.notFound))
 const ParkinSense = lazy(retry(loaders.parkinsense))
@@ -88,6 +87,7 @@ export default function App() {
   const location = useLocation()
   const recruiter = useRecruiter()
   usePrefetchRoutes()
+  useAutoRefresh()
 
   return (
     <LazyMotion features={domAnimation} strict>
@@ -131,7 +131,6 @@ export default function App() {
             <Route path="/education" element={<Education />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/resume" element={<Resume />} />
-            <Route path="/lab" element={<Lab />} />
             <Route path="/recruiter" element={<Recruiter />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

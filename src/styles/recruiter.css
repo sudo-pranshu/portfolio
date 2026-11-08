@@ -53,8 +53,7 @@
   --s-8: 3rem;
   --s-9: 4rem;
 }
-[data-mode='recruiter'] .route-bar,
-[data-mode='recruiter'] .sl__scan {
+[data-mode='recruiter'] .route-bar {
   display: none;
 }
 [data-mode='recruiter'] *,
@@ -65,10 +64,6 @@
   animation-iteration-count: 1 !important;
   transition-duration: 0.001ms !important;
   scroll-behavior: auto !important;
-}
-[data-mode='recruiter'] .lab__tabs-wrap {
-  top: 0;
-  position: static;
 }
 
 /* ---- overview page ---- */

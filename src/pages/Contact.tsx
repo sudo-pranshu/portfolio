@@ -46,7 +46,7 @@ export default function Contact() {
       path="/contact"
     >
       <section className="wrap page-head contact-head">
-        <span className="label label--accent">06 · Contact</span>
+        <span className="label label--accent">05 · Contact</span>
         <h1 className="page-head__title display">Get in touch</h1>
         <p className="page-head__lede serif">
           Choose whichever way is easiest for you: a call, a quick message, or an email.

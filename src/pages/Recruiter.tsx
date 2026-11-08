@@ -226,9 +226,6 @@ export default function Recruiter() {
                       <Link className="link" to={`/work/${slug}`}>
                         Case study <span className="arrow">→</span>
                       </Link>
-                      <Link className="link" to={`/lab?p=${slug}`}>
-                        Engineering Lab <span className="arrow">→</span>
-                      </Link>
                       {p.github && (
                         <a className="link" href={p.github} target="_blank" rel="noopener noreferrer">
                           GitHub <span className="arrow">↗</span>
